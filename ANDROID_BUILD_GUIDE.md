@@ -33,6 +33,44 @@ Android APK
 3. **Frontend Loads** → React app connects to localhost backend
 4. **100% Offline** → All data stored and processed locally on device
 
+## Critical Fix: Missing Node.js Dependencies
+
+**⚠️ IMPORTANT**: Before building the APK, you MUST install the backend dependencies in `public/nodejs/`. This was the cause of the app crashes.
+
+### The Problem
+The app was crashing with `Error: Cannot find module 'winston'` because the `node_modules` directory was missing from the embedded backend. When Node.js tried to start, it couldn't find any of the required dependencies.
+
+### The Solution
+Run this automated build script that handles everything:
+
+```bash
+./build-android.sh
+```
+
+Or manually:
+
+```bash
+# Install backend dependencies
+cd public/nodejs
+npm install --production
+cd ../..
+
+# Build and sync
+npm run build
+npx cap sync android
+```
+
+### Verification
+Before building the APK, verify dependencies are installed:
+
+```bash
+# Should show 180+ packages
+ls public/nodejs/node_modules/ | wc -l
+
+# Should exist
+test -d public/nodejs/node_modules/winston && echo "✓ Ready to build"
+```
+
 ## Building the Android APK
 
 ### Prerequisites
@@ -41,6 +79,7 @@ Android APK
 - Android Studio installed
 - Java JDK 17+ installed
 - Android SDK configured
+- **Backend dependencies installed** (see Critical Fix above)
 
 ### Build Steps
 
