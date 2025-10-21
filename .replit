@@ -1,0 +1,102 @@
+modules = ["nodejs-20", "bash", "swift-5.8", "web", "postgresql-16", "java-graalvm22.3"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Frontend"
+
+[[workflows.workflow]]
+name = "Server"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node backend/server.cjs"
+waitForPort = 3001
+
+[[workflows.workflow]]
+name = "Frontend"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 3001
+externalPort = 3001
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 33405
+externalPort = 3000
+
+[[ports]]
+localPort = 34103
+externalPort = 6800
+
+[[ports]]
+localPort = 34477
+externalPort = 8080
+
+[[ports]]
+localPort = 38365
+externalPort = 5000
+
+[[ports]]
+localPort = 39937
+externalPort = 8099
+
+[[ports]]
+localPort = 43171
+externalPort = 8000
+
+[[ports]]
+localPort = 44127
+externalPort = 5173
+
+[[ports]]
+localPort = 44309
+externalPort = 8008
+
+[[ports]]
+localPort = 44903
+externalPort = 9000
+
+[[ports]]
+localPort = 44929
+externalPort = 3002
+
+[[ports]]
+localPort = 45309
+externalPort = 3003
+
+[[ports]]
+localPort = 45375
+externalPort = 4200

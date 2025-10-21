@@ -1,0 +1,72 @@
+
+Deliverable: 
+✅ “Phase 2 Verification Report” — include fixed files, migration logs, and test summary in table format.
+
+---
+
+## 🚀 PHASE 3 — IMPLEMENTATION (Offline Sync, Reports, Multi-Device)
+
+### 🎯 OBJECTIVES
+Implement **Phase 3** with the following priorities:
+
+#### 1️⃣ Offline Data Sync (SYNC-001 to SYNC-004)
+- SYNC-001: Implement **background sync worker** that queues all sales, products, and user actions while offline.
+- SYNC-002: Automatically retry queued syncs every 10 seconds when internet is available.
+- SYNC-003: Merge offline transactions without duplicating entries (use transaction_id UUID).
+- SYNC-004: Visual indicator (badge or toast) for "Syncing..." and "Synced".
+
+Deliverables:
+✅ Sync manager in `src/utils/syncManager.ts`  
+✅ Local SQLite integration (expo-sqlite or capacitor plugin for APK)  
+✅ Queue handling verified by tests  
+
+---
+
+#### 2️⃣ Advanced Reporting & Analytics (REP-001 to REP-004)
+- REP-001: Add `Reports` module under Dashboard.
+- REP-002: Include these reports:
+  • Daily Sales Summary  
+  • Top Selling Products  
+  • Sales by User / Shift  
+  • Stock Movement Summary  
+- REP-003: Reports auto-refresh with offline cache for last 7 days.
+- REP-004: Export to PDF/CSV options.
+
+Deliverables:
+✅ `/reports` route added (frontend + backend)  
+✅ SQLite optimized queries with joins  
+✅ Download/export functions verified  
+
+---
+
+#### 3️⃣ Multi-Device Login (MULTI-001 to MULTI-003)
+- MULTI-001: Allow secure multi-device login with same account.
+- MULTI-002: Maintain session table in database to track devices.
+- MULTI-003: Enable admin to view and revoke active device sessions.
+
+Deliverables:
+✅ `sessions` table schema created  
+✅ Session tracking middleware added  
+✅ Device management screen in settings  
+
+---
+
+#### 4️⃣ UI/UX Enhancements (UX-001)
+- Add status bar indicators:
+  - 🟢 Online  
+  - 🟠 Syncing  
+  - 🔴 Offline
+- Add toast feedback for all major actions (save, sync, report export).
+- Ensure fully responsive layout for tablet/mobile.
+
+---
+
+### 🧪 TEST & VALIDATION
+- Add automated test suite for:
+  - Offline queue persistence.
+  - Sync retry success on reconnect.
+  - Report generation accuracy.
+  - Multi-device session revocation.
+- Ensure minimum **70% total coverage** after Phase 3.
+
+Run commands:

@@ -1,0 +1,80 @@
+Prompt:
+
+You are an AI software engineer applying the official Fix Pack for ClassicPOS based on the recent audit report.
+Your task is to automatically implement the following fixes and optimizations across the full codebase (frontend + backend):
+
+🔴 1. SECURITY FIX (Critical)
+
+ID: AUTH-001
+File: backend/routes/auth.cjs
+Action:
+
+Remove the line that sends mfaSecret in the /api/auth/verify-mfa response.
+
+Implement full server-side TOTP (Time-based One-Time Password) verification using the stored secret.
+
+Ensure only the verification result (success: true/false) and sanitized user data are returned.
+
+Validate all MFA-related logic to prevent replay attacks or secret exposure.
+
+🟡 2. FEATURE FIXES (Minor)
+
+FEAT-001: src/services/printService.ts
+
+Implement actual print service integration using window.print() or compatible print driver logic.
+
+Add fallback for devices without printers (e.g., export to PDF).
+
+FEAT-002: src/components/sales/ReceiptPreviewDialog.tsx
+
+Implement actual Email and Share functions using the backend endpoint /api/sales/send-receipt.
+
+Add success/error feedback based on API response.
+
+🟡 3. INVENTORY VALIDATIONS
+
+INV-001: src/components/inventory/PurchaseOrderTable.tsx
+
+Disable “Edit/Delete” actions for completed or cancelled purchase orders (both frontend & backend checks).
+
+INV-002: src/components/inventory/GRNTable.tsx
+
+Add backend validation to reject any modification to finalized GRNs.
+
+Return appropriate error message for unauthorized edits.
+
+🟡 4. CODE QUALITY & PERFORMANCE
+
+CODE-001:
+
+Remove all console.log, console.warn, and console.error from production code.
+
+Replace with centralized logger (utils/logger.ts) supporting log levels (debug, info, warn, error).
+
+SYS-001:
+
+Fix category context race condition (in reports/async-context-refactor-report.md lines 19–22).
+
+Ensure proper async handling and initialization of category data before dependent components render.
+
+✅ 5. POST-FIX VALIDATION
+
+After applying all fixes:
+
+Re-run audit and confirm 100% completion across Authentication, Accounting, Reports, User Management, and Inventory.
+
+Ensure npm run build passes without warnings.
+
+Run npm run test to confirm no regression in logic.
+
+Mark the project as Production Ready: ✅ YES in the updated AUDIT_REPORT_SUMMARY.md.
+
+🧠 Notes:
+
+Do not alter the existing folder structure or module imports.
+
+Maintain TypeScript strict mode.
+
+Follow existing code conventions (React + Express).
+
+Confirm compatibility with SQLite offline database setup.

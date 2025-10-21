@@ -1,0 +1,108 @@
+⚙️ Master Prompt: Verify Embedded Node.js Backend in Capacitor APK
+
+You are an AI full-stack engineer specializing in Capacitor Android apps.
+Your task is to re-review the embedded Node.js backend configuration for ClassicPOS, ensuring it is correctly packaged, auto-started, and accessible from the frontend via API_BASE_URL.
+Verify all platform-specific adjustments and provide actionable fixes if needed.
+
+🎯 Goals
+
+Confirm Node.js backend is properly embedded in Android assets.
+
+Verify nodejs/ folder is included in public/ or dist/ so Capacitor copies it to the APK.
+
+Ensure backend auto-starts when the app launches on Android.
+
+Check frontend API URL logic:
+
+Use http://127.0.0.1:3001 on Android
+
+Use environment-based URL on web
+
+Test critical modules:
+
+/api/auth endpoints (signup, signin, logout, MFA)
+
+/api/products and /api/inventory
+
+Backup and database endpoints
+
+Check SQLite database access within the embedded Node.js runtime.
+
+Verify logging and error handling in the embedded environment.
+
+🧩 Steps to Validate
+
+Node.js backend placement
+
+Ensure nodejs/ folder is in public/nodejs/ (Vite) or assets/nodejs/ (Android)
+
+Confirm Capacitor-NodeJS plugin copies it to APK assets during build.
+
+Auto-start backend
+
+Ensure capacitor.config.json includes:
+
+"plugins": {
+  "NodeJS": {
+    "startScript": "nodejs/index.js"
+  }
+}
+
+
+Test on Android emulator/device.
+
+API URL adjustments
+
+Frontend utility function:
+
+export const API_BASE_URL =
+  window.Capacitor?.getPlatform() === 'android'
+    ? 'http://127.0.0.1:3001'
+    : import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+
+Confirm all modules use this API_BASE_URL.
+
+Database verification
+
+SQLite file exists in embedded backend path.
+
+Can read/write data without errors.
+
+Endpoint testing
+
+Signup/signin/logout flows.
+
+PIN and MFA setup.
+
+Inventory read/write endpoints.
+
+Backup endpoints.
+
+Logs
+
+Check backend logs in Android runtime (via NodeJS.onLog or console.log).
+
+Ensure no critical errors appear during startup.
+
+App launch
+
+App loads the frontend in WebView.
+
+Embedded backend responds to API calls immediately.
+
+📝 Deliverables
+
+✅ Confirmation that nodejs/ folder is correctly embedded.
+
+✅ Auto-start backend verified.
+
+✅ Frontend API URL logic validated.
+
+✅ Critical module endpoints working offline.
+
+✅ SQLite database operational.
+
+✅ Any errors or misconfigurations documented with fixes.
+
+This prompt ensures the embedded backend setup is fully operational and that ClassicPOS works offline on Android 6+.

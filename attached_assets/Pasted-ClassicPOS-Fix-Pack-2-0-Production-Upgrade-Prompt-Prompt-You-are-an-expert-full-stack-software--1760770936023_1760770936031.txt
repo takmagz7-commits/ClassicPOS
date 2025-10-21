@@ -1,0 +1,106 @@
+ClassicPOS Fix Pack 2.0 — Production Upgrade Prompt
+
+Prompt:
+
+You are an expert full-stack software engineer applying the ClassicPOS Fix Pack 2.0 to resolve all issues identified in the latest Comprehensive Audit Report.
+Your goal is to make ClassicPOS 100% complete and production-ready while preserving the existing architecture and coding style.
+
+🔴 1. Critical Security Fix
+
+ID: AUTH-001
+File: backend/routes/auth.cjs
+Action Plan:
+
+Remove the mfaSecret exposure in /api/auth/verify-mfa.
+
+Perform server-side TOTP verification using the stored MFA secret.
+
+Return only { success: true/false, user: sanitizedUser }.
+
+Prevent replay attacks by invalidating used TOTP codes.
+
+Re-test full login + MFA flow (signup → setup MFA → login + verify).
+
+🟠 2. Major Functional Fixes
+(a) FEAT-003: Stock Reversal Logic
+
+Files:
+
+DeleteGRNDialog.tsx, DeleteStockAdjustmentDialog.tsx, DeleteTransferOfGoodsDialog.tsx
+Implement automatic stock reversal when approved documents are deleted.
+Each reversal should:
+
+Log reversal entries in inventory_history table.
+
+Adjust stock levels accordingly in products table.
+
+Create audit record tagged as "REVERSAL" for traceability.
+
+(b) FEAT-004: Cascading Delete Logic
+
+Files:
+
+DeleteSupplierDialog.tsx, DeleteStoreDialog.tsx, DeleteCustomerDialog.tsx
+Actions:
+
+Add backend constraints or pre-delete checks to prevent orphaned records.
+
+Option 1: Implement “soft delete” (set isActive=false).
+
+Option 2: Use cascading deletion only when safe (no pending dependencies).
+
+🟡 3. Minor Issues (Stability & Performance)
+ID	Fix Summary	Files	Notes
+FEAT-001	Implement full print service (browser + native print driver fallback).	src/services/printService.ts	Add offline print & PDF export options.
+FEAT-002	Implement email/share receipt via /api/sales/send-receipt.	src/components/sales/ReceiptPreviewDialog.tsx	Use nodemailer for backend email send.
+INV-001	Disable editing/deleting completed orders in UI/backend.	src/components/inventory/PurchaseOrderTable.tsx	Add conditional logic and validation.
+INV-002	Add backend validation for locked GRNs.	backend/routes/inventory.cjs	Reject edits on finalized GRNs.
+CODE-001	Remove all console.log/warn/error from production.	41 files	Replace with centralized logger.ts using log levels.
+SYS-001	Fix async context race condition on category startup.	CategoryContext.tsx	Use useEffect + async initialization guard.
+🔵 4. Cosmetic & Optimization Fixes
+ID	Description	Action
+DATA-001	Remove all mock/demo data files.	Clean /mockData/ folder.
+TEST-001	Add Jest unit test coverage (min. 40%).	Test auth, inventory, sales.
+PERF-001	Optimize bundle size (currently 1.7 MB).	Use lazy-loading & code-splitting.
+UX-001	Implement error boundaries.	Wrap app root & pages with ErrorBoundary.
+A11Y-001	Add accessibility roles & keyboard navigation.	Use aria-label, tabIndex, focus outlines.
+🧠 5. Post-Fix Actions
+
+Run QA & Regression Tests
+npm run test → all unit/integration tests must pass.
+
+Re-run Audit Validation
+Confirm 100% completion and zero critical issues.
+
+Build & Deploy
+npm run build → ensure no warnings.
+
+Generate Updated Reports
+Regenerate:
+
+AUDIT_REPORT_FINAL.json
+
+AUDIT_REPORT_FINAL.md
+Mark status: Production Ready ✅
+
+⚙️ Technical Constraints
+
+Keep SQLite as the sole database (offline mode).
+
+Preserve TypeScript strict mode & ESLint rules.
+
+Maintain REST API structure (no GraphQL).
+
+Do not alter existing folder hierarchy.
+
+📈 Expected Output
+
+After applying Fix Pack 2.0, ClassicPOS should achieve:
+
+Module	Completion	Status
+Authentication	100%	✅ Secure
+Accounting	100%	✅ Complete
+Reports	100%	✅ Complete
+User Management	100%	✅ Complete
+Inventory	100%	✅ Stable
+POS Core	100%	✅ Ready for Production

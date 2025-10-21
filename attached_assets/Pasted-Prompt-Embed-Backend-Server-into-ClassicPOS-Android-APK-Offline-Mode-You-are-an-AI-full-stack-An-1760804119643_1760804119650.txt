@@ -1,0 +1,144 @@
+Prompt: Embed Backend Server into ClassicPOS Android APK (Offline Mode)
+
+You are an AI full-stack Android and Node.js engineer.
+Your task is to configure ClassicPOS so that the backend Express server runs inside the Android APK and serves both the frontend UI and API endpoints locally — without any external internet or LAN connection.
+The app must work 100% offline using a local embedded database (SQLite).
+
+🎯 Goal
+
+Transform ClassicPOS into a self-contained Android APK that includes:
+
+Express backend
+
+SQLite database
+
+React frontend (served by Express)
+
+Localhost-based API (http://127.0.0.1
+ or http://localhost
+)
+
+Optional: Auto-start backend when the app launches
+
+🧱 Architecture
+
+Embedded Stack:
+
+Android WebView (UI Layer)
+   ↓
+Embedded Node.js Runtime (e.g. JXcore / Node.js for Mobile Apps)
+   ↓
+Express.js API (serving React build + handling data)
+   ↓
+SQLite (local data store)
+
+🧩 Implementation Steps
+1️⃣ Add Node.js Runtime to Android
+
+Use Node.js for Mobile Apps (or JXcore alternative):
+
+Install package:
+
+npm install nodejs-mobile-react-native --save
+
+
+This provides a fully functional Node.js runtime that can execute your Express backend inside Android.
+
+2️⃣ Move your backend into a “mobile-server” folder
+
+Structure:
+
+classicpos/
+├── mobile-server/
+│   ├── index.js        (Express entry point)
+│   ├── routes/
+│   ├── models/
+│   ├── db.sqlite
+│   ├── package.json
+
+3️⃣ Modify server startup (index.js)
+const express = require('express');
+const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+
+const app = express();
+const dbPath = path.join(__dirname, 'db.sqlite');
+const db = new sqlite3.Database(dbPath);
+
+app.use(express.json());
+app.use('/api', require('./routes'));
+
+const buildPath = path.join(__dirname, '../dist');
+app.use(express.static(buildPath));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
+
+app.listen(3001, () => console.log('Embedded ClassicPOS server running on port 3001'));
+
+4️⃣ Integrate Node.js runtime into React Native layer
+
+In your React Native/Capacitor project:
+
+import nodejs from 'nodejs-mobile-react-native';
+import { useEffect } from 'react';
+
+export default function App() {
+  useEffect(() => {
+    nodejs.start('mobile-server/index.js');
+  }, []);
+
+  return <WebView source={{ uri: 'http://127.0.0.1:3001' }} />;
+}
+
+5️⃣ Serve React frontend through backend
+
+Run:
+
+npm run build
+
+
+Then copy the generated /dist folder into mobile-server/ so Express can serve it offline.
+
+6️⃣ Bundle SQLite database
+
+Place your SQLite .db file inside mobile-server/ (it will be accessed locally and writable).
+
+7️⃣ Build the APK
+
+Use Capacitor or React Native to package the entire app:
+
+npx cap sync android
+npx cap open android
+
+
+Then build the APK in Android Studio.
+
+When the app starts, the backend server launches automatically, and the WebView connects to http://127.0.0.1:3001.
+
+🧾 Verification Checklist
+
+ App launches without internet
+
+ Express backend starts automatically
+
+ WebView loads UI via localhost
+
+ SQLite operations work offline
+
+ Data persists between sessions
+
+⚠️ Important Notes
+
+Memory usage increases (~60–80 MB) since Node runs inside the APK.
+
+Avoid using heavy dependencies like bcrypt; use lightweight crypto.
+
+For syncing (optional), you can later add cloud sync endpoints when online.
+
+🚀 Optional Add-Ons
+
+✅ Auto-start backend on boot
+✅ Local backup system using device storage
+✅ Sync engine (upload local data to cloud when connected)

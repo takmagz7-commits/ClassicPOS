@@ -1,0 +1,78 @@
+MASTER PROMPT — Async Context Refactor (100% Completion)
+
+Prompt (copy and paste):
+
+You are an AI software engineer completing the ClassicPOS project, which now uses a Node.js + SQLite backend with an Express REST API.
+All data flows through React Contexts (Product, Customer, Supplier, Sale, etc.), and each Context currently mixes async DB calls with local state, causing closure and synchronization issues.
+
+Your task:
+Implement a reusable createAsyncResourceContext helper pattern that ensures correct async behavior and consistent state updates across all contexts.
+
+🎯 Objectives
+
+Eliminate stale closures:
+Ensure that state updates always use the latest version of state when async operations complete.
+
+Guarantee synchronization:
+Sequence operations in the correct order:
+→ Compute new state
+→ Await API/DB call
+→ Update state with resolved result.
+
+Centralize error handling:
+All async operations should be wrapped with:
+
+try/catch
+
+automatic toast notifications for errors/success
+
+optional retry logic
+
+Reusable API:
+The helper should export standardized methods such as:
+
+const { useResource, ResourceProvider } = createAsyncResourceContext({
+  name: "Product",
+  loadAll: fetchProducts,
+  create: createProduct,
+  update: updateProduct,
+  remove: deleteProduct,
+});
+
+
+This pattern should automatically handle:
+
+Loading and error states
+
+State caching and revalidation
+
+Toasts and optimistic UI (optional)
+
+Refactor all contexts (Products, Customers, Sales, Purchases, Inventory, Auth, etc.)
+to use this pattern systematically instead of manually managing async state.
+
+Test all flows:
+
+CRUD operations update both backend (SQLite via Express) and frontend state correctly.
+
+No UI lag, race conditions, or stale data after multiple async operations.
+
+Deliver a report summarizing:
+
+Architecture of the new helper
+
+Contexts refactored
+
+Edge cases handled (e.g., network failure, DB errors, stale data prevention)
+
+✅ Deliverables:
+
+src/utils/createAsyncResourceContext.ts helper file
+
+Updated context files using the helper
+
+Toast notification integration for async errors
+
+Verified end-to-end data flow (API → Context → UI)
+
+Documentation in README on how to create new resource contexts

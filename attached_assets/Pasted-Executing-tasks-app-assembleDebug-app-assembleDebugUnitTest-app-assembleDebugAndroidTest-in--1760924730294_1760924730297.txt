@@ -1,0 +1,666 @@
+Executing tasks: [:app:assembleDebug, :app:assembleDebugUnitTest, :app:assembleDebugAndroidTest] in project C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\android
+
+
+> Configure project :app
+AGPBI: {"kind":"warning","text":"Using flatDir should be avoided because it doesn't support any meta-data formats.","sources":[{}]}
+
+> Configure project :capacitor-cordova-android-plugins
+AGPBI: {"kind":"warning","text":"Using flatDir should be avoided because it doesn't support any meta-data formats.","sources":[{}]}
+
+> Task :capacitor-cordova-android-plugins:preBuild UP-TO-DATE
+> Task :capacitor-nodejs:preBuild UP-TO-DATE
+> Task :capacitor-android:preBuild UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:preDebugBuild UP-TO-DATE
+> Task :capacitor-android:preDebugBuild UP-TO-DATE
+> Task :capacitor-nodejs:preDebugBuild UP-TO-DATE
+> Task :capacitor-nodejs:writeDebugAarMetadata
+> Task :capacitor-android:writeDebugAarMetadata
+> Task :capacitor-cordova-android-plugins:writeDebugAarMetadata
+> Task :capacitor-cordova-android-plugins:generateDebugResValues
+> Task :capacitor-android:generateDebugResValues
+> Task :capacitor-nodejs:generateDebugResValues
+> Task :capacitor-cordova-android-plugins:generateDebugResources
+> Task :capacitor-android:generateDebugResources
+> Task :capacitor-nodejs:generateDebugResources
+> Task :capacitor-nodejs:packageDebugResources
+> Task :capacitor-cordova-android-plugins:packageDebugResources
+> Task :capacitor-cordova-android-plugins:extractDeepLinksDebug
+> Task :capacitor-nodejs:extractDeepLinksDebug
+> Task :capacitor-android:packageDebugResources
+> Task :capacitor-android:extractDeepLinksDebug
+> Task :capacitor-nodejs:processDebugManifest
+> Task :capacitor-cordova-android-plugins:processDebugManifest
+> Task :capacitor-android:processDebugManifest
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/8.7.2-12006047/aapt2-8.7.2-12006047.pom, took 1 s 608 ms
+Downloading https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/8.7.2-12006047/aapt2-8.7.2-12006047-windows.jar (434.50 kB / 2.05 MB)> Task :capacitor-android:compileDebugLibraryResources
+> Task :capacitor-cordova-android-plugins:compileDebugLibraryResources
+> Task :capacitor-nodejs:compileDebugLibraryResources
+Download https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/8.7.2-12006047/aapt2-8.7.2-12006047-windows.jar, took 6 s 956 ms
+> Task :capacitor-cordova-android-plugins:parseDebugLocalResources
+> Task :capacitor-android:parseDebugLocalResources
+> Task :capacitor-android:generateDebugRFile
+> Task :capacitor-cordova-android-plugins:generateDebugRFile
+> Task :capacitor-nodejs:parseDebugLocalResources
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :capacitor-nodejs:generateDebugRFile
+> Task :app:mergeDebugNativeDebugMetadata
+> Task :capacitor-android:javaPreCompileDebug
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:javaPreCompileDebug
+> Task :capacitor-cordova-android-plugins:javaPreCompileDebug
+> Task :capacitor-cordova-android-plugins:compileDebugJavaWithJavac NO-SOURCE
+> Task :capacitor-cordova-android-plugins:bundleLibCompileToJarDebug
+> Task :capacitor-nodejs:javaPreCompileDebug
+> Task :capacitor-cordova-android-plugins:mergeDebugShaders
+> Task :capacitor-cordova-android-plugins:compileDebugShaders NO-SOURCE
+> Task :capacitor-cordova-android-plugins:generateDebugAssets UP-TO-DATE
+> Task :app:checkDebugAarMetadata
+> Task :app:generateDebugResValues
+> Task :capacitor-cordova-android-plugins:packageDebugAssets
+> Task :capacitor-android:compileDebugJavaWithJavac
+> Task :app:mapDebugSourceSetPaths
+> Task :capacitor-nodejs:mergeDebugShaders
+> Task :capacitor-nodejs:compileDebugShaders NO-SOURCE
+> Task :capacitor-nodejs:generateDebugAssets UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:bundleLibRuntimeToJarDebug
+> Task :capacitor-nodejs:packageDebugAssets
+> Task :capacitor-cordova-android-plugins:processDebugJavaRes NO-SOURCE
+> Task :capacitor-nodejs:processDebugJavaRes NO-SOURCE
+> Task :app:generateDebugResources
+> Task :capacitor-cordova-android-plugins:mergeDebugJniLibFolders
+> Task :capacitor-cordova-android-plugins:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-cordova-android-plugins:copyDebugJniLibsProjectOnly
+> Task :app:mergeDebugResources
+> Task :capacitor-nodejs:configureCMakeDebug[arm64-v8a]
+> Task :app:packageDebugResources
+> Task :app:parseDebugLocalResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :capacitor-nodejs:buildCMakeDebug[arm64-v8a]
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugShaders
+> Task :app:processDebugManifestForPackage
+> Task :app:compileDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:mergeDebugJniLibFolders
+> Task :app:checkDebugDuplicateClasses
+> Task :app:validateSigningDebug
+> Task :app:mergeExtDexDebug
+
+> Task :capacitor-nodejs:buildCMakeDebug[arm64-v8a] FAILED
+C/C++: ninja: Entering directory `C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android\.cxx\Debug\5umr2e2c\arm64-v8a'
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::lock()
+C/C++: >>> referenced by bridge.cpp:80 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:80)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+C/C++: >>> referenced by bridge.cpp:149 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:149)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:65 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:65)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+C/C++: >>> referenced 1 more times
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::unlock()
+C/C++: >>> referenced by bridge.cpp:87 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:87)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+C/C++: >>> referenced by bridge.cpp:159 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:159)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:67 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:67)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+C/C++: >>> referenced 1 more times
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::~mutex()
+C/C++: >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+C/C++: >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+C/C++: ld.lld: error: undefined symbol: operator new(unsigned long)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long>(unsigned long))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by tuple:1409 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/tuple:1409)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, Channel*>::pair[abi:ne180000]<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&, 0ul>(std::__ndk1::piecewise_construct_t, std::__ndk1::tuple<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&>&, std::__ndk1::tuple<>&, std::__ndk1::__tuple_indices<0ul>, std::__ndk1::__tuple_indices<...>))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_string()
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:170 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:170)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(SendMessageToNode(char const*, char const*))
+C/C++: >>> referenced 8 more times
+C/C++: ld.lld: error: undefined symbol: operator delete(void*)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*>(void*))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::__init(char const*, unsigned long)
+C/C++: >>> referenced by string:954 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string:954)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string[abi:ne180000]<0>(char const*))
+C/C++: ld.lld: error: undefined symbol: __cxa_begin_catch
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+C/C++: ld.lld: error: undefined symbol: std::terminate()
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+C/C++: ld.lld: error: undefined symbol: operator delete(void*, std::align_val_t)
+C/C++: >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*, std::align_val_t>(void*, std::align_val_t))
+C/C++: ld.lld: error: undefined symbol: __cxa_allocate_exception
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: std::bad_array_new_length::bad_array_new_length()
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: typeinfo for std::bad_array_new_length
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: std::bad_array_new_length::~bad_array_new_length()
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: __cxa_throw
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: operator new(unsigned long, std::align_val_t)
+C/C++: >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long, std::align_val_t>(unsigned long, std::align_val_t))
+C/C++: ld.lld: error: undefined symbol: __gxx_personality_v0
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(DW.ref.__gxx_personality_v0)
+C/C++: CLANG_~1: error: linker command failed with exit code 1 (use -v to see invocation)
+C/C++: ninja: build stopped: subcommand failed.
+
+> Task :capacitor-nodejs:configureCMakeDebug[armeabi-v7a]
+C/C++: CMake Warning (dev) in CMakeLists.txt:
+C/C++:   No project() command is present.  The top-level CMakeLists.txt file must
+C/C++:   contain a literal, direct call to the project() command.  Add a line of
+C/C++:   code such as
+C/C++:     project(ProjectName)
+C/C++:   near the top of the file, but after cmake_minimum_required().
+C/C++:   CMake is pretending there is a "project(Project)" command on the first
+C/C++:   line.
+C/C++: This warning is for project developers.  Use -Wno-dev to suppress it.
+C/C++: CMake Warning in C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeLists.txt:
+C/C++:   The object file directory
+C/C++:     C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_46b06.dir/./
+C/C++:   has 245 characters.  The maximum full path to an object file is 250
+C/C++:   characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+C/C++:     CMakeCCompilerABI.c.o
+C/C++:   cannot be safely placed under this directory.  The build may not work
+C/C++:   correctly.
+C/C++: CMake Warning in C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeLists.txt:
+C/C++:   The object file directory
+C/C++:     C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/armeabi-v7a/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_ad166.dir/./
+C/C++:   has 245 characters.  The maximum full path to an object file is 250
+C/C++:   characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+C/C++:     CMakeCXXCompilerABI.cpp.o
+C/C++:   cannot be safely placed under this directory.  The build may not work
+C/C++:   correctly.
+C/C++: CMake Warning in CMakeLists.txt:
+C/C++:   The object file directory
+C/C++:     C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/armeabi-v7a/CMakeFiles/native-lib.dir/./
+C/C++:   has 225 characters.  The maximum full path to an object file is 250
+C/C++:   characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+C/C++:     src/main/cpp/native-lib.cpp.o
+C/C++:   cannot be safely placed under this directory.  The build may not work
+C/C++:   correctly.
+
+> Task :capacitor-android:compileDebugJavaWithJavac
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :capacitor-nodejs:buildCMakeDebug[armeabi-v7a]
+C/C++: ninja: error: mkdir(../../../../build/intermediates/cxx/Debug/5umr2e2c/obj/armeabi-v7a): No such file or directory
+
+> Task :capacitor-nodejs:buildCMakeDebug[armeabi-v7a] FAILED
+
+> Task :capacitor-nodejs:configureCMakeDebug[x86_64]
+C/C++: CMake Warning (dev) in CMakeLists.txt:
+C/C++:   No project() command is present.  The top-level CMakeLists.txt file must
+C/C++:   contain a literal, direct call to the project() command.  Add a line of
+C/C++:   code such as
+C/C++:     project(ProjectName)
+C/C++:   near the top of the file, but after cmake_minimum_required().
+C/C++:   CMake is pretending there is a "project(Project)" command on the first
+C/C++:   line.
+C/C++: This warning is for project developers.  Use -Wno-dev to suppress it.
+C/C++: CMake Warning in C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:
+C/C++:   The object file directory
+C/C++:     C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/x86_64/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_3a6a6.dir/./
+C/C++:   has 240 characters.  The maximum full path to an object file is 250
+C/C++:   characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+C/C++:     CMakeCCompilerABI.c.o
+C/C++:   cannot be safely placed under this directory.  The build may not work
+C/C++:   correctly.
+C/C++: CMake Warning in C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:
+C/C++:   The object file directory
+C/C++:     C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/.cxx/Debug/5umr2e2c/x86_64/CMakeFiles/CMakeTmp/CMakeFiles/cmTC_9d334.dir/./
+C/C++:   has 240 characters.  The maximum full path to an object file is 250
+C/C++:   characters (see CMAKE_OBJECT_PATH_MAX).  Object file
+C/C++:     CMakeCXXCompilerABI.cpp.o
+C/C++:   cannot be safely placed under this directory.  The build may not work
+C/C++:   correctly.
+
+> Task :capacitor-nodejs:buildCMakeDebug[x86_64]
+C/C++: ninja: Entering directory `C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android\.cxx\Debug\5umr2e2c\x86_64'
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::lock()
+C/C++: >>> referenced by bridge.cpp:80 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:80)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+C/C++: >>> referenced by bridge.cpp:149 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:149)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:65 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:65)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+C/C++: >>> referenced 1 more times
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::unlock()
+C/C++: >>> referenced by bridge.cpp:87 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:87)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+C/C++: >>> referenced by bridge.cpp:159 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:159)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:67 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:67)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+C/C++: >>> referenced 1 more times
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::mutex::~mutex()
+C/C++: >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+C/C++: ld.lld: error: undefined symbol: operator new(unsigned long)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long>(unsigned long))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by tuple:1409 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/tuple:1409)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, Channel*>::pair[abi:ne180000]<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&, 0ul>(std::__ndk1::piecewise_construct_t, std::__ndk1::tuple<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&>&, std::__ndk1::tuple<>&, std::__ndk1::__tuple_indices<0ul>, std::__ndk1::__tuple_indices<...>))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_string()
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by bridge.cpp:170 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:170)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(SendMessageToNode(char const*, char const*))
+C/C++: >>> referenced 8 more times
+C/C++: ld.lld: error: undefined symbol: operator delete(void*)
+C/C++: >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+C/C++: >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*>(void*))
+C/C++: ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::__init(char const*, unsigned long)
+C/C++: >>> referenced by string:954 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string:954)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string[abi:ne180000]<0>(char const*))
+C/C++: ld.lld: error: undefined symbol: __cxa_begin_catch
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+C/C++: ld.lld: error: undefined symbol: std::terminate()
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+C/C++: ld.lld: error: undefined symbol: operator delete(void*, std::align_val_t)
+C/C++: >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*, std::align_val_t>(void*, std::align_val_t))
+C/C++: ld.lld: error: undefined symbol: __cxa_allocate_exception
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: std::bad_array_new_length::bad_array_new_length()
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: typeinfo for std::bad_array_new_length
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: std::bad_array_new_length::~bad_array_new_length()
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: __cxa_throw
+C/C++: >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+C/C++: ld.lld: error: undefined symbol: operator new(unsigned long, std::align_val_t)
+C/C++: >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long, std::align_val_t>(unsigned long, std::align_val_t))
+C/C++: ld.lld: error: undefined symbol: __gxx_personality_v0
+C/C++: >>> referenced by bridge.cpp
+C/C++: >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(DW.ref.__gxx_personality_v0)
+C/C++: CLANG_~1: error: linker command failed with exit code 1 (use -v to see invocation)
+C/C++: ninja: build stopped: subcommand failed.
+
+> Task :capacitor-nodejs:buildCMakeDebug[x86_64] FAILED
+> Task :capacitor-android:bundleLibCompileToJarDebug
+> Task :capacitor-android:mergeDebugShaders
+> Task :capacitor-nodejs:mergeDebugJniLibFolders
+> Task :capacitor-android:compileDebugShaders NO-SOURCE
+> Task :capacitor-android:generateDebugAssets UP-TO-DATE
+> Task :capacitor-android:packageDebugAssets
+> Task :capacitor-android:bundleLibRuntimeToJarDebug
+> Task :capacitor-android:processDebugJavaRes NO-SOURCE
+> Task :capacitor-android:mergeDebugJniLibFolders
+> Task :capacitor-android:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-android:copyDebugJniLibsProjectOnly
+> Task :capacitor-nodejs:compileDebugJavaWithJavac
+> Task :capacitor-nodejs:bundleLibCompileToJarDebug
+> Task :capacitor-nodejs:bundleLibRuntimeToJarDebug
+> Task :app:processDebugResources
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:javaPreCompileDebugAndroidTest
+> Task :app:mergeLibDexDebug
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:generateDebugAndroidTestResources
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:processDebugAndroidTestManifest
+> Task :app:mergeDebugAndroidTestShaders
+> Task :app:compileDebugAndroidTestShaders NO-SOURCE
+> Task :app:mergeDebugJavaResource
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets
+> Task :app:compressDebugAndroidTestAssets
+> Task :app:desugarDebugAndroidTestFileDependencies
+> Task :app:processDebugAndroidTestJavaRes NO-SOURCE
+> Task :app:processDebugAndroidTestResources
+> Task :app:mergeDebugAndroidTestJavaResource
+> Task :app:compileDebugJavaWithJavac
+> Task :app:dexBuilderDebug
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:checkDebugAndroidTestDuplicateClasses
+> Task :app:mergeProjectDexDebug
+> Task :app:compileDebugUnitTestJavaWithJavac
+> Task :app:assembleDebugUnitTest
+> Task :app:compileDebugAndroidTestJavaWithJavac
+> Task :app:dexBuilderDebugAndroidTest
+> Task :app:mergeDebugAndroidTestGlobalSynthetics
+> Task :app:mergeDebugAndroidTestJniLibFolders
+> Task :app:validateSigningDebugAndroidTest
+> Task :app:mergeLibDexDebugAndroidTest
+> Task :app:writeDebugAndroidTestSigningConfigVersions
+> Task :app:mergeProjectDexDebugAndroidTest
+> Task :app:mergeExtDexDebugAndroidTest
+[Incubating] Problems report is available at: file:///C:/Users/MASTER%20USER/dyad-apps/ClassicPOS-test/android/build/reports/problems/problems-report.html
+
+FAILURE: Build completed with 3 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':capacitor-nodejs:buildCMakeDebug[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android\.cxx\Debug\5umr2e2c\arm64-v8a'
+  [1/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+  [2/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o
+  [3/3] Linking CXX shared library ..\..\..\..\build\intermediates\cxx\Debug\5umr2e2c\obj\arm64-v8a\libnative-lib.so
+  FAILED: ../../../../build/intermediates/cxx/Debug/5umr2e2c/obj/arm64-v8a/libnative-lib.so 
+  cmd.exe /C "cd . && C:\Users\MASTER~1\AppData\Local\Android\Sdk\ndk\270~1.120\TOOLCH~1\llvm\prebuilt\WINDOW~1\bin\CLANG_~1.EXE --target=aarch64-none-linux-android22 --sysroot="C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -fPIC -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -shared -Wl,-soname,libnative-lib.so -o ..\..\..\..\build\intermediates\cxx\Debug\5umr2e2c\obj\arm64-v8a\libnative-lib.so CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o  ../../../../libnode/bin/arm64-v8a/libnode.so  "C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/aarch64-linux-android/22/liblog.so"  -latomic -lm && cd ."
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::lock()
+  >>> referenced by bridge.cpp:80 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:80)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+  >>> referenced by bridge.cpp:149 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:149)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:65 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:65)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+  >>> referenced 1 more times
+  
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::unlock()
+  >>> referenced by bridge.cpp:87 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:87)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+  >>> referenced by bridge.cpp:159 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:159)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:67 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:67)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+  >>> referenced 1 more times
+  
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::~mutex()
+  >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+  >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+  
+  ld.lld: error: undefined symbol: operator new(unsigned long)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long>(unsigned long))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by tuple:1409 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/tuple:1409)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, Channel*>::pair[abi:ne180000]<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&, 0ul>(std::__ndk1::piecewise_construct_t, std::__ndk1::tuple<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&>&, std::__ndk1::tuple<>&, std::__ndk1::__tuple_indices<0ul>, std::__ndk1::__tuple_indices<...>))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_string()
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:170 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:170)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(SendMessageToNode(char const*, char const*))
+  >>> referenced 8 more times
+  
+  ld.lld: error: undefined symbol: operator delete(void*)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*>(void*))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::__init(char const*, unsigned long)
+  >>> referenced by string:954 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string:954)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string[abi:ne180000]<0>(char const*))
+  
+  ld.lld: error: undefined symbol: __cxa_begin_catch
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+  
+  ld.lld: error: undefined symbol: std::terminate()
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+  
+  ld.lld: error: undefined symbol: operator delete(void*, std::align_val_t)
+  >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*, std::align_val_t>(void*, std::align_val_t))
+  
+  ld.lld: error: undefined symbol: __cxa_allocate_exception
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: std::bad_array_new_length::bad_array_new_length()
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: typeinfo for std::bad_array_new_length
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: std::bad_array_new_length::~bad_array_new_length()
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: __cxa_throw
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: operator new(unsigned long, std::align_val_t)
+  >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long, std::align_val_t>(unsigned long, std::align_val_t))
+  
+  ld.lld: error: undefined symbol: __gxx_personality_v0
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(DW.ref.__gxx_personality_v0)
+  CLANG_~1: error: linker command failed with exit code 1 (use -v to see invocation)
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\MASTER USER\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\MASTER USER\\dyad-apps\\ClassicPOS-test\\node_modules\\.pnpm\\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\\node_modules\\capacitor-nodejs\\android\\.cxx\\Debug\\5umr2e2c\\arm64-v8a" ^
+        native-lib
+    from C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':capacitor-nodejs:buildCMakeDebug[armeabi-v7a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android\.cxx\Debug\5umr2e2c\armeabi-v7a'
+  [1/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+  [2/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o
+  ninja: build stopped: .
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\MASTER USER\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\MASTER USER\\dyad-apps\\ClassicPOS-test\\node_modules\\.pnpm\\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\\node_modules\\capacitor-nodejs\\android\\.cxx\\Debug\\5umr2e2c\\armeabi-v7a" ^
+        native-lib
+    from C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android
+  ninja: error: mkdir(../../../../build/intermediates/cxx/Debug/5umr2e2c/obj/armeabi-v7a): No such file or directory
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+3: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':capacitor-nodejs:buildCMakeDebug[x86_64]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android\.cxx\Debug\5umr2e2c\x86_64'
+  [1/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+  [2/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o
+  [3/3] Linking CXX shared library ..\..\..\..\build\intermediates\cxx\Debug\5umr2e2c\obj\x86_64\libnative-lib.so
+  FAILED: ../../../../build/intermediates/cxx/Debug/5umr2e2c/obj/x86_64/libnative-lib.so 
+  cmd.exe /C "cd . && C:\Users\MASTER~1\AppData\Local\Android\Sdk\ndk\270~1.120\TOOLCH~1\llvm\prebuilt\WINDOW~1\bin\CLANG_~1.EXE --target=x86_64-none-linux-android22 --sysroot="C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot" -fPIC -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -shared -Wl,-soname,libnative-lib.so -o ..\..\..\..\build\intermediates\cxx\Debug\5umr2e2c\obj\x86_64\libnative-lib.so CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o  ../../../../libnode/bin/x86_64/libnode.so  "C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/x86_64-linux-android/22/liblog.so"  -latomic -lm && cd ."
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::lock()
+  >>> referenced by bridge.cpp:80 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:80)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+  >>> referenced by bridge.cpp:149 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:149)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:65 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:65)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+  >>> referenced 1 more times
+  
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::unlock()
+  >>> referenced by bridge.cpp:87 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:87)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::flushQueue())
+  >>> referenced by bridge.cpp:159 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:159)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:67 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:67)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(Channel::queueMessage(char*))
+  >>> referenced 1 more times
+  
+  ld.lld: error: undefined symbol: std::__ndk1::mutex::~mutex()
+  >>> referenced by bridge.cpp:0 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:0)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__cxx_global_var_init)
+  
+  ld.lld: error: undefined symbol: operator new(unsigned long)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long>(unsigned long))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by tuple:1409 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/tuple:1409)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::pair<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const, Channel*>::pair[abi:ne180000]<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&, 0ul>(std::__ndk1::piecewise_construct_t, std::__ndk1::tuple<std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&>&, std::__ndk1::tuple<>&, std::__ndk1::__tuple_indices<0ul>, std::__ndk1::__tuple_indices<...>))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::~basic_string()
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by bridge.cpp:170 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:170)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(SendMessageToNode(char const*, char const*))
+  >>> referenced 8 more times
+  
+  ld.lld: error: undefined symbol: operator delete(void*)
+  >>> referenced by bridge.cpp:156 (C:/Users/MASTER USER/dyad-apps/ClassicPOS-test/node_modules/.pnpm/capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55/node_modules/capacitor-nodejs/android/src/main/cpp/bridge.cpp:156)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(GetOrCreateChannel(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>> const&))
+  >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*>(void*))
+  
+  ld.lld: error: undefined symbol: std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::__init(char const*, unsigned long)
+  >>> referenced by string:954 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/string:954)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char>>::basic_string[abi:ne180000]<0>(char const*))
+  
+  ld.lld: error: undefined symbol: __cxa_begin_catch
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+  
+  ld.lld: error: undefined symbol: std::terminate()
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(__clang_call_terminate)
+  
+  ld.lld: error: undefined symbol: operator delete(void*, std::align_val_t)
+  >>> referenced by new:280 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:280)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void std::__ndk1::__libcpp_operator_delete[abi:ne180000]<void*, std::align_val_t>(void*, std::align_val_t))
+  
+  ld.lld: error: undefined symbol: __cxa_allocate_exception
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: std::bad_array_new_length::bad_array_new_length()
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: typeinfo for std::bad_array_new_length
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: std::bad_array_new_length::~bad_array_new_length()
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: __cxa_throw
+  >>> referenced by new:174 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:174)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(std::__throw_bad_array_new_length[abi:ne180000]())
+  
+  ld.lld: error: undefined symbol: operator new(unsigned long, std::align_val_t)
+  >>> referenced by new:271 (C:/Users/MASTER USER/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/new:271)
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(void* std::__ndk1::__libcpp_operator_new[abi:ne180000]<unsigned long, std::align_val_t>(unsigned long, std::align_val_t))
+  
+  ld.lld: error: undefined symbol: __gxx_personality_v0
+  >>> referenced by bridge.cpp
+  >>>               CMakeFiles/native-lib.dir/src/main/cpp/bridge.cpp.o:(DW.ref.__gxx_personality_v0)
+  CLANG_~1: error: linker command failed with exit code 1 (use -v to see invocation)
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\Users\\MASTER USER\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "C:\\Users\\MASTER USER\\dyad-apps\\ClassicPOS-test\\node_modules\\.pnpm\\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\\node_modules\\capacitor-nodejs\\android\\.cxx\\Debug\\5umr2e2c\\x86_64" ^
+        native-lib
+    from C:\Users\MASTER USER\dyad-apps\ClassicPOS-test\node_modules\.pnpm\capacitor-nodejs@https+++gi_59d55ba701e6476300ded72107a39c55\node_modules\capacitor-nodejs\android
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 14m 47s
+111 actionable tasks: 111 executed

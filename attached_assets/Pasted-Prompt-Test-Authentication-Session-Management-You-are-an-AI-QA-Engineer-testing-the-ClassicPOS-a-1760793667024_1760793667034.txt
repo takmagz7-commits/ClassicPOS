@@ -1,0 +1,94 @@
+Prompt: Test Authentication & Session Management
+
+You are an AI QA Engineer testing the ClassicPOS authentication system.
+Perform a full automated end-to-end test of the following features:
+
+1. Signup Tests
+
+Validate user registration with valid credentials.
+
+Test duplicate username/email rejection.
+
+Test password strength requirements (minimum length, special chars).
+
+Ensure password is encrypted using bcrypt in the database.
+
+Confirm success response includes JWT or confirmation message.
+
+2. Signin Tests
+
+Verify login with correct credentials returns a valid JWT token.
+
+Test login failure for incorrect password or inactive users.
+
+Check that invalid/missing credentials return HTTP 400/401.
+
+Measure response time and verify no sensitive data is leaked.
+
+3. PIN Login / Admin PIN
+
+Verify admin PIN is required for elevated operations.
+
+Test invalid PIN rejection and lockout after 3 failed attempts.
+
+Ensure audit logs capture admin PIN access attempts.
+
+4. Session Management
+
+Confirm session persistence using JWT in local/session storage.
+
+Test automatic logout when JWT expires.
+
+Verify session timeout and idle auto-logout behavior.
+
+Ensure user cannot access routes after logout.
+
+5. Logout Tests
+
+Test logout endpoint clears token/session properly.
+
+Verify subsequent requests fail after logout.
+
+6. Security Validation
+
+Check that HTTPS is enforced on all auth routes.
+
+Ensure JWT secret is stored securely and not hardcoded.
+
+Verify CSRF and CORS configurations.
+
+Detect open endpoints (missing authMiddleware) across backend routes.
+
+7. Session Restore
+
+After app restart or refresh, confirm token revalidation and restore.
+
+Test multiple device login behavior (should invalidate previous or allow parallel sessions based on design).
+
+8. Performance Metrics
+
+Measure API response times for /signup, /signin, /logout.
+
+Identify latency spikes or memory leaks.
+
+🧠 Output Required:
+
+Detailed PASS/FAIL report for each test.
+
+Log of all HTTP responses and JWT payload checks.
+
+Highlight any authentication vulnerabilities (e.g. token reuse, missing middleware).
+
+Provide a completion percentage for authentication coverage.
+
+Recommend specific code fixes for failed areas.
+
+📄 Deliverables:
+
+CLASSICPOS_AUTH_TEST_RESULTS.md
+
+CLASSICPOS_AUTH_FINDINGS.md
+
+CLASSICPOS_AUTH_SUMMARY.md
+
+✅ Goal: Achieve 100% test coverage and verify secure, reliable authentication and session flow for ClassicPOS.

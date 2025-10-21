@@ -1,0 +1,196 @@
+Prompt: Achieve 100% Completion for Reports Module — ClassicPOS
+
+You are an AI software engineer finalizing the Reports module of the ClassicPOS system.
+Your task is to analyze and complete all reporting features — ensuring every report type is implemented, accurate, exportable, and fully integrated with the backend.
+
+🎯 Objective
+
+Achieve 100% completion of the Reports module by implementing all missing reports, backend data aggregation, and export features (PDF/CSV), ensuring that reporting is reliable, fast, and aligned with production standards.
+
+🧩 Scope of Work
+
+Perform a full audit and completion pass for:
+
+src/pages/Reports.tsx
+
+src/modules/reports/ (all report components)
+
+src/context/ReportContext.tsx
+
+server/routes/reports.ts
+
+server/controllers/reportController.ts
+
+server/services/reportService.ts
+
+Any utilities for formatting, exporting, or date handling
+
+Database query logic in SQLite backend
+
+✅ Required Functionalities
+1️⃣ Core Report Types (Implement All)
+
+Each report should be fully functional with dynamic filters (date range, store, user, etc.):
+
+Report Type	Description	Data Source
+Sales Summary Report	Total sales, refunds, discounts, profit margins	sales, sale_items, products
+Inventory Valuation Report	Current stock valuation by cost and retail price	products, inventory
+Customer Report	Customer purchases, loyalty usage, top spenders	customers, sales
+Supplier Report	Purchase orders, GRNs, supplier performance	suppliers, purchase_orders, grn
+Tax Report	Tax collected per period	sales, taxes
+Debtors Report	Outstanding balances from credit customers	sales, payments, customers
+Product Performance Report	Top/bottom selling items	sales, sale_items
+User/Staff Report	Cashier performance, sales handled	sales, users
+
+Each report must support:
+
+Date range filtering
+
+Search & filter by store, user, or customer
+
+Pagination (if large datasets)
+
+2️⃣ Backend API (SQLite + Express)
+
+Implement the following routes in server/routes/reports.ts:
+
+GET /api/reports/sales
+GET /api/reports/inventory
+GET /api/reports/customers
+GET /api/reports/suppliers
+GET /api/reports/tax
+GET /api/reports/debtors
+GET /api/reports/products
+GET /api/reports/staff
+
+
+Each route:
+
+Accepts filters via query parameters (startDate, endDate, storeId, userId, etc.)
+
+Uses parameterized SQL queries (prevent injection)
+
+Returns aggregated data and summary totals
+
+Implements try/catch with proper HTTP error codes
+
+Example (Sales Summary):
+
+SELECT 
+  s.id, s.date, c.name AS customer, SUM(si.total) AS total
+FROM sales s
+JOIN sale_items si ON s.id = si.sale_id
+LEFT JOIN customers c ON s.customer_id = c.id
+WHERE s.date BETWEEN ? AND ?
+GROUP BY s.id
+ORDER BY s.date DESC;
+
+3️⃣ Frontend Integration
+
+ReportContext.tsx
+
+Implement async resource pattern for all reports
+
+Functions:
+
+getSalesReport, getInventoryReport, etc.
+
+Handle loading/error states with toasts
+
+Support dynamic filtering via context state
+
+Reports.tsx (Main Page)
+
+Add UI for:
+
+Date range selector
+
+Store filter
+
+User filter
+
+Export buttons (CSV/PDF)
+
+Display data tables for each report type (tabs or dropdown selection)
+
+Show totals and summary cards (e.g. total sales, gross profit, tax)
+
+Individual Report Components
+
+Use responsive data tables
+
+Include column sorting and inline filters
+
+Show totals at bottom of table
+
+4️⃣ Export Features
+
+CSV Export
+
+Implement CSV export for all reports using a shared utility (utils/exportToCSV.ts)
+
+Include filename with timestamp, e.g., sales-report-2025-10-18.csv
+
+PDF Export
+
+Implement PDF export using jsPDF or pdfmake
+
+Include business name, logo, and report summary
+
+Ensure layout fits A4 printable format
+
+5️⃣ Integration Points
+
+Reports pull real data from:
+
+Sales
+
+Inventory
+
+Customers
+
+Suppliers
+
+Accounting (debtors)
+
+Support offline mode where cached data is used if backend unreachable (optional)
+
+6️⃣ Validation & Performance
+
+Use pagination for large data sets
+
+Validate date filters (must not be inverted)
+
+Optimize queries with proper indexing
+
+Ensure no blocking UI during data fetch
+
+🧮 Expected Output Format (Report + Implementation)
+Completion Report Example:
+Area	Status	Fixed / Added	Notes
+Backend API	✅ Complete	8 report routes implemented	SQL parameterized
+Context	✅ Complete	Async resource pattern	Toasts + error handling
+UI	✅ Complete	Date filters, tabs, export buttons	Tested OK
+CSV Export	✅ Added	All reports exportable	Uses unified utility
+PDF Export	✅ Added	Business-branded reports	Verified print layout
+Integration	⚙️ Linked	Connected with sales/inventory	Working fine
+⚙️ Execution Rules
+
+Maintain async resource context pattern.
+
+Use existing apiService for all API calls.
+
+Follow established TypeScript typings and validation.
+
+No console.log or TODO placeholders left.
+
+All reports must load and render without crashes or empty data errors.
+
+🧠 Goal
+
+Deliver a fully functional, tested, and production-ready Reports module, complete with backend queries, frontend UI, and export capabilities — ensuring accurate analytics across ClassicPOS.
+
+🧭 Final Instruction
+
+Run a full scan of the Reports module, detect missing or incomplete logic, and implement all required backend + frontend features to achieve 100% functional completion.
+Return a structured completion report (table + summary) confirming all reports, filters, and exports are working.

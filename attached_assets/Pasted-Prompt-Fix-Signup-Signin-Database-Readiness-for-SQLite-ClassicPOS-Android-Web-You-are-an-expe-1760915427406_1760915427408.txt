@@ -1,0 +1,103 @@
+Prompt: Fix Signup, Signin & Database Readiness for SQLite (ClassicPOS Android/Web)
+
+You are an expert full-stack AI engineer maintaining ClassicPOS (Capacitor + Vite + Node.js + Express + SQLite).
+The system must work flawlessly on Android 6+ and modern browsers, including embedded or offline builds.
+
+Your task is to fix signup, signin, and session management so that no “Error occurred during registration” appears, and SQLite is always initialized before any authentication routes run.
+
+🧩 Fix Requirements
+
+Database Initialization
+
+Ensure the SQLite database connection (via sqlite3 or better-sqlite3) is opened once and awaited before any route loads.
+
+Implement a helper like:
+
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+
+export const initDB = async () => {
+  const db = await open({
+    filename: './classicpos.db',
+    driver: sqlite3.Database,
+  });
+  await db.exec('PRAGMA foreign_keys = ON;');
+  return db;
+};
+
+
+Call this before loading Express routes and log "✅ SQLite database initialized and ready".
+
+Health Check Middleware
+
+Create middleware /api/health/db that returns { status: 'ready' } if SQLite file is accessible.
+
+Frontend should check this once before signup or signin and retry (up to 3 times) if not ready.
+
+Signup Logic
+
+In authController.js:
+
+Verify the database handle is active.
+
+On first registration, assign role "admin".
+
+Restrict further email registration until “admin clears data” from ClassicPOS Settings.
+
+Validate email uniqueness and password strength.
+
+After first successful signin, prompt admin to create a 4-digit PIN stored securely (hashed).
+
+Signin Logic
+
+Ensure SQLite query uses prepared statements (? placeholders).
+
+On invalid credentials, return HTTP 401 instead of 500.
+
+Log "User authenticated successfully" on success.
+
+Frontend Adjustments
+
+Update API config:
+
+import { Capacitor } from '@capacitor/core';
+export const API_BASE_URL =
+  Capacitor.getPlatform() === 'android'
+    ? 'http://localhost:8080/api' // embedded or local server
+    : import.meta.env.VITE_API_URL || '/api';
+
+
+Before calling /signup or /signin, call /api/health/db.
+If not ready, show “Setting up database…” with a retry spinner.
+
+Error Handling
+
+Replace generic “Error occurred” with:
+
+“Database initializing — please wait…” if DB isn’t ready.
+
+“Email already used” for duplicate signup.
+
+“Invalid credentials” for wrong login.
+
+Testing Targets
+
+Android 6–14 (APK and emulator)
+
+Browser (localhost)
+
+Offline mode (embedded SQLite)
+
+✅ Expected Outcome
+
+Signup and signin work 100% reliably on all devices.
+
+SQLite always initializes before first use.
+
+“Database not ready” handled gracefully.
+
+First user = Admin; further signups blocked until admin clears data.
+
+Admin prompted to set a 4-digit PIN after first login.
+
+Secure session management without race conditions or file-locking errors.

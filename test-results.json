@@ -1,0 +1,350 @@
+{
+  "results": [
+    {
+      "testName": "Valid user registration",
+      "category": "Signup",
+      "status": "PASS",
+      "message": "User successfully registered with valid credentials",
+      "details": {
+        "status": 201,
+        "responseTime": 225,
+        "hasToken": true
+      },
+      "timestamp": "2025-10-18T13:51:40.423Z"
+    },
+    {
+      "testName": "Password excluded from response",
+      "category": "Signup",
+      "status": "PASS",
+      "message": "Password correctly excluded from signup response",
+      "details": {},
+      "timestamp": "2025-10-18T13:51:40.425Z"
+    },
+    {
+      "testName": "JWT token generation",
+      "category": "Signup",
+      "status": "PASS",
+      "message": "JWT token generated successfully",
+      "details": {
+        "hasToken": true
+      },
+      "timestamp": "2025-10-18T13:51:40.428Z"
+    },
+    {
+      "testName": "Duplicate email rejection",
+      "category": "Signup",
+      "status": "PASS",
+      "message": "Duplicate email correctly rejected",
+      "details": {
+        "status": 409
+      },
+      "timestamp": "2025-10-18T13:51:40.584Z"
+    },
+    {
+      "testName": "Password strength validation",
+      "category": "Signup",
+      "status": "PASS",
+      "message": "Weak password correctly rejected",
+      "details": {
+        "status": 400,
+        "passwordLength": 5
+      },
+      "timestamp": "2025-10-18T13:51:40.740Z"
+    },
+    {
+      "testName": "Signup response time",
+      "category": "Performance",
+      "status": "PASS",
+      "message": "Signup completed in 225ms",
+      "details": {
+        "responseTime": 225
+      },
+      "timestamp": "2025-10-18T13:51:40.740Z"
+    },
+    {
+      "testName": "Login with correct credentials",
+      "category": "Login",
+      "status": "PASS",
+      "message": "Successfully logged in with correct credentials",
+      "details": {
+        "status": 200,
+        "responseTime": 87
+      },
+      "timestamp": "2025-10-18T13:51:41.251Z"
+    },
+    {
+      "testName": "Login with incorrect password",
+      "category": "Login",
+      "status": "PASS",
+      "message": "Incorrect password correctly rejected",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:51:41.484Z"
+    },
+    {
+      "testName": "Login with nonexistent user",
+      "category": "Login",
+      "status": "PASS",
+      "message": "Nonexistent user correctly rejected",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:51:41.639Z"
+    },
+    {
+      "testName": "Login with missing fields",
+      "category": "Login",
+      "status": "PASS",
+      "message": "Missing fields correctly rejected",
+      "details": {
+        "status": 400
+      },
+      "timestamp": "2025-10-18T13:51:41.794Z"
+    },
+    {
+      "testName": "Sensitive data leak check",
+      "category": "Security",
+      "status": "PASS",
+      "message": "Password not leaked in login response",
+      "details": {},
+      "timestamp": "2025-10-18T13:51:41.794Z"
+    },
+    {
+      "testName": "Create user with PIN code",
+      "category": "PIN Login",
+      "status": "PASS",
+      "message": "User with PIN code created successfully",
+      "details": {
+        "status": 201
+      },
+      "timestamp": "2025-10-18T13:51:42.436Z"
+    },
+    {
+      "testName": "Login with valid PIN",
+      "category": "PIN Login",
+      "status": "PASS",
+      "message": "Successfully logged in with valid PIN",
+      "details": {
+        "status": 200,
+        "hasToken": true
+      },
+      "timestamp": "2025-10-18T13:51:42.671Z"
+    },
+    {
+      "testName": "Login with invalid PIN",
+      "category": "PIN Login",
+      "status": "PASS",
+      "message": "Invalid PIN correctly rejected",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:51:43.372Z"
+    },
+    {
+      "testName": "Login with missing PIN field",
+      "category": "PIN Login",
+      "status": "PASS",
+      "message": "Missing PIN field correctly rejected",
+      "details": {
+        "status": 400
+      },
+      "timestamp": "2025-10-18T13:51:43.526Z"
+    },
+    {
+      "testName": "JWT token validation",
+      "category": "Session Management",
+      "status": "PASS",
+      "message": "JWT token validated successfully",
+      "details": {
+        "status": 200,
+        "valid": true
+      },
+      "timestamp": "2025-10-18T13:52:41.256Z"
+    },
+    {
+      "testName": "Session persistence",
+      "category": "Session Management",
+      "status": "PASS",
+      "message": "Session persisted correctly",
+      "details": {
+        "status": 200
+      },
+      "timestamp": "2025-10-18T13:52:41.412Z"
+    },
+    {
+      "testName": "Invalid token rejection",
+      "category": "Session Management",
+      "status": "PASS",
+      "message": "Invalid token correctly rejected",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:52:41.565Z"
+    },
+    {
+      "testName": "No token protection",
+      "category": "Session Management",
+      "status": "PASS",
+      "message": "Protected route correctly requires authentication",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:52:41.718Z"
+    },
+    {
+      "testName": "Logout endpoint",
+      "category": "Logout",
+      "status": "PASS",
+      "message": "Logout successful",
+      "details": {
+        "status": 200,
+        "responseTime": 3
+      },
+      "timestamp": "2025-10-18T13:52:42.211Z"
+    },
+    {
+      "testName": "Post-logout request blocked",
+      "category": "Logout",
+      "status": "PASS",
+      "message": "Requests correctly blocked after logout",
+      "details": {
+        "status": 401
+      },
+      "timestamp": "2025-10-18T13:52:42.364Z"
+    },
+    {
+      "testName": "JWT secret security",
+      "category": "Security",
+      "status": "PASS",
+      "message": "JWT secret is properly configured (128 characters)",
+      "details": {
+        "length": 128
+      },
+      "timestamp": "2025-10-18T13:52:42.365Z"
+    },
+    {
+      "testName": "CORS configuration",
+      "category": "Security",
+      "status": "PASS",
+      "message": "CORS configured for: http://localhost:5000,http://127.0.0.1:5000",
+      "details": {
+        "origins": "http://localhost:5000,http://127.0.0.1:5000"
+      },
+      "timestamp": "2025-10-18T13:52:42.365Z"
+    },
+    {
+      "testName": "Environment configuration",
+      "category": "Security",
+      "status": "PASS",
+      "message": "Running in development mode",
+      "details": {
+        "environment": "development"
+      },
+      "timestamp": "2025-10-18T13:52:42.365Z"
+    },
+    {
+      "testName": "CSRF token validation",
+      "category": "Security",
+      "status": "PASS",
+      "message": "Using SameSite=strict cookie attribute for CSRF protection",
+      "details": {
+        "note": "Consider implementing explicit CSRF tokens for defense in depth"
+      },
+      "timestamp": "2025-10-18T13:52:42.365Z"
+    },
+    {
+      "testName": "Session restoration",
+      "category": "Session Restore",
+      "status": "PASS",
+      "message": "Session restored successfully from token",
+      "details": {
+        "status": 200
+      },
+      "timestamp": "2025-10-18T13:52:43.774Z"
+    },
+    {
+      "testName": "Token revalidation",
+      "category": "Session Restore",
+      "status": "PASS",
+      "message": "Token revalidated successfully",
+      "details": {
+        "status": 200
+      },
+      "timestamp": "2025-10-18T13:52:43.927Z"
+    },
+    {
+      "testName": "Multiple device support",
+      "category": "Session Restore",
+      "status": "PASS",
+      "message": "JWT-based sessions allow parallel sessions across devices",
+      "details": {
+        "note": "No device/session tracking detected - allows unlimited parallel sessions"
+      },
+      "timestamp": "2025-10-18T13:52:43.928Z"
+    },
+    {
+      "testName": "Signup performance",
+      "category": "Performance",
+      "status": "PASS",
+      "message": "Average signup time: 129ms",
+      "details": {
+        "average": 129,
+        "samples": [
+          163,
+          126,
+          98
+        ]
+      },
+      "timestamp": "2025-10-18T13:53:43.327Z"
+    },
+    {
+      "testName": "Login performance",
+      "category": "Performance",
+      "status": "PASS",
+      "message": "Average login time: 88ms",
+      "details": {
+        "average": 88.33333333333333,
+        "samples": [
+          82,
+          92,
+          91
+        ]
+      },
+      "timestamp": "2025-10-18T13:53:43.327Z"
+    },
+    {
+      "testName": "Logout performance",
+      "category": "Performance",
+      "status": "PASS",
+      "message": "Average logout time: 3ms",
+      "details": {
+        "average": 3,
+        "samples": [
+          3,
+          2,
+          4
+        ]
+      },
+      "timestamp": "2025-10-18T13:53:43.327Z"
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "severity": "LOW",
+      "name": "No Explicit CSRF Protection",
+      "description": "Application relies solely on SameSite=strict for CSRF protection",
+      "impact": "May be vulnerable in browsers that do not support SameSite",
+      "recommendation": "Consider implementing additional CSRF token validation for critical operations",
+      "timestamp": "2025-10-18T13:52:42.366Z"
+    }
+  ],
+  "summary": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "successRate": "100.0",
+    "duration": "123.28",
+    "vulnerabilityCount": 1
+  }
+}

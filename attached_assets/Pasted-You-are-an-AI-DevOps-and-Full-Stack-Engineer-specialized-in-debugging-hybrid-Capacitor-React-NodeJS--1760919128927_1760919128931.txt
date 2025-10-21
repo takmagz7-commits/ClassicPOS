@@ -1,0 +1,60 @@
+You are an AI DevOps and Full-Stack Engineer specialized in debugging hybrid Capacitor/React/NodeJS apps.
+
+Your task: Test and fix all authentication flows (signup, signin, logout, session persistence) in ClassicPOS for both web and Android builds. The system uses SQLite for local data storage and ExpressJS for backend logic. Ensure database initialization works properly inside the Android environment.
+
+Perform these actions step-by-step:
+
+1️⃣ Environment Check:
+- Verify that SQLite is initialized before user registration or login.
+- Ensure the database file (classicpos.db) is created on Android assets or app data path.
+- Confirm that migrations/tables (users, sessions, roles) exist and load without error.
+- If not, auto-create them with default schema.
+
+2️⃣ Signup Logic:
+- Only allow first-time registration to create an admin user.
+- Enforce that email & password can be used ONCE during first registration.
+- If database already has an admin user, disable visible signup form and API endpoint.
+- On successful registration:
+  → Assign admin role
+  → Create session token
+  → Prompt to set 4–6 digit security PIN for future logins
+
+3️⃣ Signin Logic:
+- Implement dual login:
+  (a) Email & Password (for admin only, first-time login)
+  (b) PIN Login (for all subsequent logins)
+- Enforce one active session per user; reuse or refresh token on re-login.
+- Show proper messages for invalid credentials or locked accounts.
+
+4️⃣ Session Management:
+- Implement secure JWT session storage (auto-refresh every 24h).
+- Ensure Android localStorage or SQLite session table syncs correctly.
+- Verify logout clears session token and returns app to login screen.
+
+5️⃣ Error Handling:
+- Fix any “Error occurred during registration” or “You don’t have permission” errors.
+- Ensure API_BASE_URL resolves correctly for Android (embedded or local server).
+- Add fallbacks for offline SQLite access if backend is unreachable.
+
+6️⃣ Tests to Run:
+- Run full signup → login → logout → re-login → session persistence tests on:
+  - Android 6, 8, 10, 12, 14
+  - Web browser (Chrome + Edge)
+- Validate offline/online transitions.
+
+7️⃣ Deliverables:
+- Fix all critical bugs blocking signup/signin.
+- Ensure no “permission denied” or “database not initialized” errors.
+- Return a summary report including:
+  • Auth success/failure counts
+  • Database initialization status
+  • Android compatibility notes
+  • Session token verification result
+  • Logs of fixed files (routes, controllers, DB config, frontend Auth.tsx)
+
+8️⃣ Optional Enhancements (if time allows):
+- Add “Reset PIN” flow for admin in Settings.
+- Encrypt PIN values using bcrypt.
+- Add session timeout configuration (default: 24h).
+
+Once all tests pass, return a ✅ “AUTHENTICATION FULLY OPERATIONAL” report.

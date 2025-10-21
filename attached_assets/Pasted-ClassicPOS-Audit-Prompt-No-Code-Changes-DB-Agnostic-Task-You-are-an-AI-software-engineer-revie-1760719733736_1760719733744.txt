@@ -1,0 +1,130 @@
+ClassicPOS Audit Prompt (No Code Changes, DB-Agnostic)
+
+Task:
+
+You are an AI software engineer reviewing the ClassicPOS project. Your task is to scan the entire codebase — frontend, backend, and configuration files — and produce a detailed report of missing, incomplete, or broken parts. Do not modify any code yet.
+
+🔍 Objectives
+
+Generate a comprehensive audit report identifying:
+
+Unfinished or placeholder features
+
+Missing business logic
+
+Broken links or dependencies
+
+Integration gaps
+
+Environment or configuration issues
+
+UI/UX inconsistencies
+
+Focus on all modules, regardless of the database implementation (the database may be localStorage, IndexedDB, cloud, or any backend DB).
+
+🧩 Scope of Scan
+
+Include but not limited to:
+
+Frontend: src/ (components, modules, pages, hooks, utils)
+
+Backend: api/, server/, routes/, controllers/, services/
+
+Configuration: package.json, vite.config.ts, tsconfig.json, .env.example
+
+Data Models: Any database schemas, models, or context-based storage
+
+UI & Routing: Pages, navigation, responsive views
+
+🧾 Report Should Include
+
+1. Unfinished or Placeholder Features
+
+Incomplete or stubbed modules, components, or pages
+
+TODO, FIXME, console.log() placeholders
+
+2. Broken Links or Dependencies
+
+Missing imports or unused variables
+
+Broken routes, missing components, or undefined functions
+
+3. Incomplete Business Logic
+
+Inventory workflows (PO → GRN → SA → TOG, valuation, reports)
+
+Checkout & payments (multi-payment, barcode, open orders)
+
+CRM (customer data, leads, analytics)
+
+Accounting (credit notes, debtors, reconciliation)
+
+Settings, billing, subscriptions, receipt configuration
+
+4. Integration Gaps
+
+Missing API endpoints or incomplete data flow
+
+Offline DB sync not connected
+
+Authentication/session logic incomplete
+
+5. Environment & Configuration Issues
+
+Missing .env variables or misconfigured settings
+
+Missing or outdated dependencies in package.json
+
+6. UI/UX Issues
+
+Broken navigation, inconsistent layouts, missing responsive views
+
+🧮 Output Format (Report Only)
+
+1. Summary Table
+Include:
+
+ID	Severity	File Path	Issue Type	Description	Recommended Fix
+
+2. Module Status Overview
+
+Module	Status	Missing / Incomplete Parts
+
+3. Observations
+List global architectural inconsistencies, redundant code, unreferenced files, or broken workflows.
+
+4. Next Steps (Suggestions Only)
+Summarize what needs to be fixed or implemented. Do not apply any fixes.
+
+⚙️ Execution Rules
+
+Do not modify any files — report only
+
+Include file paths and line numbers if possible
+
+Assign severity levels:
+
+P0 – Critical, breaks functionality
+
+P1 – Major, missing required logic
+
+P2 – Minor, code inconsistency or cleanup
+
+P3 – Cosmetic/UI improvement
+
+🧭 Goal
+
+Produce a single, structured audit report showing:
+
+What’s missing
+
+Where it’s missing
+
+What’s required to complete each part
+
+This report will guide future code generation or patching confidently.
+
+Final Instruction:
+
+Run the scan and return a structured report (JSON + readable summary) of all missing, incomplete, or broken parts in ClassicPOS. Do not modify any code — report only.

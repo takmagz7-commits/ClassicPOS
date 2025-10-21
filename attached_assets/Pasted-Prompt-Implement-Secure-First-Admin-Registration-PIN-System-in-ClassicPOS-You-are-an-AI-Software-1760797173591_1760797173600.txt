@@ -1,0 +1,133 @@
+Prompt: Implement Secure First Admin Registration & PIN System in ClassicPOS
+
+You are an AI Software Engineer working on ClassicPOS authentication and user management system.
+Implement and enforce the following registration and user flow logic end-to-end across both backend and frontend:
+
+🔐 1. First-Time Registration (Admin Account Creation)
+
+When ClassicPOS is launched for the first time, allow only one registration using email and password.
+
+Automatically assign the role:
+
+role: 'admin'
+
+
+After successful registration:
+
+Mark system state as initialized: true in local storage or database (e.g., system_settings table or collection).
+
+Prevent further email/password signups until system data is cleared via ClassicPOS Settings.
+
+👁️ 2. Hide Signup and Email Registration After Initialization
+
+Once the first admin is created:
+
+Hide or disable all registration and signup components in the UI.
+
+Replace “Register” with “Login” screen only.
+
+Display a message like:
+
+“ClassicPOS is already configured. Please sign in with your admin credentials.”
+
+If the admin clears system data (via Settings > ClassicPOS Settings > Reset System), re-enable registration flow.
+
+🔑 3. Default PIN System Setup
+
+After the first successful admin login, automatically redirect to:
+
+/setup-pin or a similar route.
+
+Require the admin to set a 4-6 digit security PIN.
+
+Save the PIN securely:
+
+Encrypt with bcrypt or AES before saving.
+
+Store in the users table as pin_hash.
+
+PIN will be required for:
+
+Future quick logins.
+
+Sensitive actions (e.g., delete data, manage users, approve payments).
+
+System settings access.
+
+👨‍💼 4. Admin User Management
+
+After the first admin setup:
+
+Enable access to Settings > User Management.
+
+Admin can:
+
+Add new users (roles: cashier, manager, inventory, etc.)
+
+Edit or deactivate existing users.
+
+Reset PINs or passwords for users.
+
+New users must authenticate using PIN login (default) unless otherwise specified.
+
+Admin is the only role that can view, edit, or delete users.
+
+⚙️ 5. System State Control
+
+Create a system configuration file or table (e.g. system_state):
+
+{
+  "initialized": true,
+  "admin_email": "admin@classicpos.com",
+  "pin_setup": true,
+  "registration_locked": true
+}
+
+
+Use this to control:
+
+Whether the signup screen appears.
+
+Whether PIN setup is required.
+
+Whether system reset is available.
+
+🧠 6. Security & Enforcement
+
+Enforce unique email and password (only used once at first registration).
+
+Validate PIN securely before sensitive actions.
+
+Disable any public /register or /signup API routes after initialization.
+
+Protect all user management routes with authMiddleware and roleCheck('admin').
+
+📄 7. Expected Deliverables
+
+Generate or update the following files:
+
+backend/routes/auth.cjs — Implement first-user registration & PIN setup logic.
+
+backend/middleware/registrationLock.cjs — Middleware to block new registrations after initialization.
+
+frontend/src/pages/Register.jsx — Hide form when registration is locked.
+
+frontend/src/pages/PinSetup.jsx — PIN setup UI for admin after first login.
+
+frontend/src/pages/Settings/UserManagement.jsx — Manage other users.
+
+frontend/src/pages/Settings/SystemReset.jsx — Option to reset ClassicPOS (re-enables registration).
+
+✅ Goal
+
+Implement and verify:
+
+Only one admin can register initially.
+
+Registration hidden after setup.
+
+PIN setup required after first login.
+
+Admin can manage all other users.
+
+System can be reset to allow new setup.

@@ -1,0 +1,133 @@
+Prompt — “Report Only” (No Code Changes)
+
+You are an AI software engineer reviewing the ClassicPOS project.
+Your task is to scan the entire codebase — including frontend, backend, and configuration files — and produce a detailed report (no code modifications yet).
+
+🔍 Objective
+
+Generate a comprehensive report identifying all missing, unfinished, or broken parts of the ClassicPOS system.
+
+🧩 Scope of Scan
+
+Check all files and folders, including but not limited to:
+
+src/ (components, modules, pages, hooks, utils)
+
+api/, server/, routes/, controllers/, services/
+
+Config files (package.json, vite.config.ts, tsconfig.json, .env.example)
+
+Database models or schema definitions
+
+UI layout and routing structure
+
+🧾 Report Should Include
+
+Unfinished or Placeholder Features
+
+Incomplete or stubbed modules, components, or pages.
+
+TODO, FIXME, console.log() placeholders.
+
+Broken Links or Dependencies
+
+Missing imports or unused variables.
+
+Missing components, broken route references, or undefined functions.
+
+Incomplete Business Logic
+
+Inventory workflows (GRN, SA, TOG, valuation, reports)
+
+Checkout and Payments (multiple payments, barcode, open orders)
+
+CRM (customer data, leads, analytics)
+
+Accounting (credit notes, debtors)
+
+Settings, billing, subscriptions, and receipt configuration.
+
+Integration Gaps
+
+Missing API endpoints or data flow.
+
+Offline DB sync not linked.
+
+Authentication or session logic not completed.
+
+Environment & Configuration Issues
+
+Missing .env variables or misconfigured settings.
+
+Missing dependencies in package.json.
+
+UI/UX Issues
+
+Inconsistent layouts, broken navigation, missing responsive views.
+
+🧮 Output Format (Report Only)
+
+Return the findings in this structured format:
+
+📋 Summary Table
+ID	Severity	File Path	Issue Type	Description	Recommended Fix
+INV-001	P0	src/modules/inventory/ProductForm.tsx	Missing Logic	Form does not save valuation method	Add valuationMethod field to form state and API payload
+📁 Module Status Overview
+Module	Status	Missing / Incomplete Parts
+Authentication	✅ Complete	—
+Inventory	⚠️ Partial	GRN logic, valuation, reports
+Checkout	❌ Incomplete	Multiple payment, open orders
+CRM	⚠️ Partial	Customer analytics missing
+Accounting	⚠️ Partial	Credit note flow missing
+Reports	⚠️ Partial	AI analytics, export feature
+Settings	⚠️ Partial	Tax setup, subscription link missing
+🧠 Observations
+
+List global architectural or structural inconsistencies.
+
+Note redundant code, naming conflicts, or unreferenced files.
+
+Summarize missing API connections or broken workflows.
+
+✅ Next Steps (Suggestions Only)
+
+Short summary of what needs to be fixed or implemented.
+
+Do not apply fixes yet — just describe them.
+
+⚙️ Execution Rules
+
+Do not modify any files yet.
+
+Only analyze and report.
+
+Be explicit about:
+
+File paths
+
+Line numbers (if possible)
+
+Severity levels:
+
+P0 – Critical, breaks functionality
+
+P1 – Major, missing required logic
+
+P2 – Minor, code inconsistency or cleanup
+
+P3 – Cosmetic/UI improvement
+
+🧭 Goal
+
+Produce a single, complete audit report showing:
+
+What’s missing
+
+Where it’s missing
+
+What’s required to complete each part
+So the next step will be to generate or patch code confidently.
+
+Final instruction:
+
+“Run the scan and return a structured report (JSON + readable summary) of all missing, incomplete, or broken parts in ClassicPOS. Do not modify any code — report only.”

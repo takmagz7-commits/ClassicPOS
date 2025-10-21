@@ -1,0 +1,328 @@
+Great — I’ll implement Option 1: Patch AUTH-001 (MFA security fix) right now.
+
+Below you’ll find:
+
+A complete ready-to-apply patch for backend/routes/auth.cjs (CommonJS .cjs) that moves TOTP verification fully to the server and never returns mfaSecret to the client.
+
+A safe authentication flow (signup → setup MFA → login → verify MFA) outline.
+
+A basic Jest + supertest unit test for the MFA endpoint.
+
+A verification checklist and quick run instructions.
+
+.env.example snippet for required secrets.
+
+1) Summary of the fix (what changes and why)
+
+Problem: /api/auth/verify-mfa returned the user’s mfaSecret in JSON, enabling attackers to bypass MFA.
+
+Fix:
+
+Remove any code that returns mfaSecret to the client.
+
+Verify the TOTP code on the backend using the stored secret (e.g., speakeasy.totp.verify(...)).
+
+If verification succeeds, issue the normal auth token (JWT or session cookie) — never include mfaSecret.
+
+Add a rate limiter or short window (optional) to reduce brute-force risk (suggested, not required in this minimal patch).
+
+2) Patch: backend/routes/auth.cjs (ready-to-paste)
+
+Replace the vulnerable route handler with the following. This assumes you have speakeasy and jsonwebtoken (jwt) installed and a DB helper db.getUserById() or similar. Tweak helper names to match your codebase if they differ.
+
+// backend/routes/auth.cjs
+const express = require('express');
+const router = express.Router();
+const speakeasy = require('speakeasy');
+const jwt = require('jsonwebtoken');
+const { getUserById, getUserByEmail, saveUser, updateUser } = require('../db/users'); // adapt path
+const { JWT_SECRET = process.env.JWT_SECRET } = process.env;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // optional rate limiting per user (example)
+const MAX_ATTEMPTS = 5;
+
+// --- in-memory attempt tracker (simple, works for single-process)
+const mfaAttemptTracker = new Map();
+
+/**
+ * Helper: generateJWT (sanitized payload)
+ */
+function generateJWT(user) {
+  const payload = {
+    id: user.id,
+    email: user.email,
+    role: user.role,
+  };
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: '12h' });
+}
+
+/**
+ * Helper: clear attempts on success or reset on timeout
+ */
+function recordMfaAttempt(userId) {
+  const now = Date.now();
+  const entry = mfaAttemptTracker.get(userId) || { attempts: 0, firstAt: now };
+  entry.attempts += 1;
+  mfaAttemptTracker.set(userId, entry);
+  return entry;
+}
+function resetMfaAttempts(userId) {
+  mfaAttemptTracker.delete(userId);
+}
+
+/**
+ * POST /api/auth/verify-mfa
+ * Body: { userId, token }
+ * Verifies TOTP token server-side and returns JWT if successful.
+ */
+router.post('/verify-mfa', async (req, res) => {
+  try {
+    const { userId, token } = req.body;
+    if (!userId || !token) {
+      return res.status(400).json({ message: 'Missing userId or token' });
+    }
+
+    const user = await getUserById(userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Rate limiting: simple attempt check (single-process)
+    const attempts = mfaAttemptTracker.get(userId);
+    if (attempts && attempts.attempts >= MAX_ATTEMPTS && (Date.now() - attempts.firstAt) < RATE_LIMIT_WINDOW_MS) {
+      return res.status(429).json({ message: 'Too many attempts. Try again later.' });
+    }
+    // Verify TOTP *server-side* using stored secret; do NOT expose secret to client.
+    const verified = speakeasy.totp.verify({
+      secret: user.mfaSecret,        // secret stays on server only
+      encoding: 'base32',
+      token,
+      window: 1,                     // allow 1 window before/after (tweak if needed)
+    });
+
+    if (!verified) {
+      const entry = recordMfaAttempt(userId);
+      return res.status(401).json({ message: 'Invalid MFA code', attempts: entry.attempts });
+    }
+
+    // success: reset attempts
+    resetMfaAttempts(userId);
+
+    // Optionally mark user.mfaVerified flag (if required):
+    // await updateUser(userId, { lastMfaVerifiedAt: new Date().toISOString() });
+
+    // Generate JWT or session
+    const tokenJwt = generateJWT(user);
+
+    // Return sanitized user object (NO mfaSecret)
+    const safeUser = {
+      id: user.id,
+      email: user.email,
+      fullName: user.fullName || user.name || null,
+      role: user.role || 'Cashier',
+    };
+
+    // If you prefer cookies:
+    // res.cookie('token', tokenJwt, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+
+    return res.json({ success: true, user: safeUser, token: tokenJwt });
+  } catch (err) {
+    console.error('MFA verify error', err);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+module.exports = router;
+
+
+Notes / adaptation points
+
+Replace DB helper imports (getUserById, updateUser) with the actual functions used in your codebase.
+
+If your app uses session cookies instead of JWTs, set the cookie on success instead of returning the token in JSON.
+
+I included a simple in-memory attempt tracker to reduce brute force; for a multi-process environment use Redis or DB-based counters.
+
+3) Remove all mfaSecret exposures elsewhere
+
+Search and remove any code that prints or returns mfaSecret, for example:
+
+res.json({ user: { ..., mfaSecret: user.mfaSecret } }) — remove mfaSecret
+
+Do not include mfaSecret in responses from signup, user profile, or debug endpoints.
+
+If you want, I can provide a quick grep command to find occurrences:
+
+# from repo root (unix)
+grep -R "mfaSecret" -n || true
+
+4) Optional: Endpoint for MFA setup (server-side generation)
+
+If you currently return the secret to the client for setup (QR), you likely do that on signup. The secret must be delivered only during the MFA enrollment step and only once, then never returned again. Typical flow:
+
+User requests to enable MFA -> POST /api/auth/setup-mfa
+
+Server generates secret via speakeasy.generateSecret({ name: 'ClassicPOS (user@example.com)' })
+
+Server returns otpauth_url and base32 secret to client for QR generation during setup only
+
+Server saves the secret to DB and marks mfaEnabled=false until verified
+
+User scans QR and provides first TOTP -> POST /api/auth/verify-mfa (we already changed to server-side verify)
+
+On verify success, set mfaEnabled=true in DB, but still never return the secret later
+
+If you need the setup endpoint, here's an example (enrollment):
+
+// POST /api/auth/setup-mfa
+router.post('/setup-mfa', async (req, res) => {
+  const { userId } = req.body;
+  const user = await getUserById(userId);
+  if (!user) return res.status(404).json({ message: 'User not found' });
+
+  const secret = speakeasy.generateSecret({ name: `ClassicPOS (${user.email})` });
+  // Save secret (base32) to user record
+  await updateUser(userId, { mfaSecret: secret.base32, mfaEnabled: false });
+  // Return QR url and maybe base32 for user to scan **during enrollment only**
+  return res.json({ otpauth_url: secret.otpauth_url, base32: secret.base32 });
+});
+
+
+Important: Only call setup-mfa during enrollment and inform the user to copy/secure recovery codes.
+
+5) Unit test (Jest + supertest) for /verify-mfa
+
+Place this under backend/tests/auth.mfa.test.js (adjust your Jest config). This test assumes you can create a user with a known mfaSecret.
+
+// backend/tests/auth.mfa.test.js
+const request = require('supertest');
+const app = require('../server'); // your Express app entry
+const speakeasy = require('speakeasy');
+const { createTestUser, deleteTestUser } = require('./helpers'); // implement helpers to seed DB
+
+describe('MFA verification', () => {
+  let user;
+  beforeAll(async () => {
+    // Create a test user with a known secret
+    const secret = speakeasy.generateSecret();
+    user = await createTestUser({
+      email: 'mfa-test@example.com',
+      password: 'TestPass123!',
+      mfaSecret: secret.base32,
+    });
+    user.secret = secret.base32;
+  });
+
+  afterAll(async () => {
+    await deleteTestUser(user.id);
+  });
+
+  test('verifies valid TOTP and returns token + sanitized user', async () => {
+    const token = speakeasy.totp({ secret: user.secret, encoding: 'base32' });
+
+    const res = await request(app)
+      .post('/api/auth/verify-mfa')
+      .send({ userId: user.id, token });
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.user).toHaveProperty('id', user.id);
+    expect(res.body.user).not.toHaveProperty('mfaSecret');
+    expect(res.body).toHaveProperty('token');
+  });
+
+  test('rejects invalid token', async () => {
+    const res = await request(app)
+      .post('/api/auth/verify-mfa')
+      .send({ userId: user.id, token: '000000' });
+
+    expect(res.status).toBe(401);
+    expect(res.body).toHaveProperty('message', 'Invalid MFA code');
+  });
+});
+
+
+You will need helper functions to create/delete a test user in your test DB. If you run tests against a real DB, take care to isolate test data.
+
+6) .env.example additions
+
+Add required env variables to your .env.example:
+
+# Authentication
+JWT_SECRET=replace_with_secure_random_value
+JWT_EXPIRES=12h
+
+# MFA / MFA window tuning (optional)
+MFA_WINDOW=1
+
+
+Generate a strong JWT_SECRET (e.g., openssl rand -base64 32).
+
+7) Verification checklist (run locally)
+
+Apply the patch to backend/routes/auth.cjs.
+
+Install dependencies if missing:
+
+npm install speakeasy jsonwebtoken
+# if using yarn:
+# yarn add speakeasy jsonwebtoken
+
+
+Ensure .env contains JWT_SECRET.
+
+Start backend:
+
+npm run start:server
+
+
+Test flows manually with Postman or curl:
+
+Enroll (if using setup endpoint):
+
+curl -X POST http://localhost:3001/api/auth/setup-mfa \
+  -H "Content-Type: application/json" \
+  -d '{"userId": 123}'
+
+
+-> receive otpauth_url & base32 (only during setup)
+
+Verify (use generated TOTP):
+
+curl -X POST http://localhost:3001/api/auth/verify-mfa \
+  -H "Content-Type: application/json" \
+  -d '{"userId": 123, "token":"123456"}'
+
+
+Expected: 200 + { success: true, user: {...}, token: "..." } — no mfaSecret.
+
+Run unit tests (if added):
+
+npm test
+
+
+Search for any other mfaSecret occurrences and remove exposures:
+
+grep -R "mfaSecret" -n || true
+
+8) Rollback plan
+
+If anything goes wrong, you can revert by:
+
+Restoring the previous backend/routes/auth.cjs from git:
+
+git checkout -- backend/routes/auth.cjs
+
+
+Clear any test changes to DB (if you modified user secrets during tests).
+
+9) Follow-ups & recommended hardening (optional, strongly recommended)
+
+Add persistent rate-limiting (Redis) for MFA tries (protects against distributed brute force).
+
+Add temporary lockout and alerts after repeated failed attempts.
+
+Provide backup codes to users when they enable MFA (and store their hashed versions).
+
+Offer recovery flows (email OTP/backup codes) for users who lose device.
+
+Log MFA success/failure events to audit logs (do not log secrets).
+
+Add unit tests & integration tests to prevent regressions.

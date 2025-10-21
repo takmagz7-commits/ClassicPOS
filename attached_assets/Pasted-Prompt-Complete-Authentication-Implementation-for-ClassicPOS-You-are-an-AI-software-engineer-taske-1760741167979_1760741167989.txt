@@ -1,0 +1,110 @@
+Prompt: Complete Authentication Implementation for ClassicPOS
+
+You are an AI software engineer tasked with implementing full authentication for ClassicPOS, ensuring secure login, signup, session management, and access control. The app uses React + TypeScript frontend, Node.js + Express backend, and SQLite database.
+
+Goals:
+
+Secure user registration and login
+
+Hash passwords before storing in SQLite
+
+Issue JWT or session cookies for authentication
+
+Implement role-based access control (RBAC)
+
+Protect all backend API routes
+
+Support secure logout and token/session expiration
+
+Prevent common security issues (XSS, CSRF, SQL injection)
+
+Requirements:
+
+Backend Implementation (Express + SQLite)
+
+Install and use bcrypt or argon2 for password hashing
+
+Create /api/auth/signup endpoint:
+
+Accept username, email, password, role
+
+Validate input
+
+Hash password
+
+Save user to SQLite
+
+Return success message or JWT token
+
+Create /api/auth/login endpoint:
+
+Accept email and password
+
+Verify credentials
+
+Return JWT token or set HTTP-only session cookie
+
+Create /api/auth/logout endpoint:
+
+Destroy session or invalidate token
+
+Middleware:
+
+authMiddleware to protect routes
+
+roleMiddleware to enforce RBAC
+
+Ensure SQL queries are parameterized to prevent injection
+
+Frontend Implementation (React + TypeScript)
+
+Update AuthContext to handle async login, logout, signup
+
+Store token in secure HTTP-only cookie (avoid localStorage)
+
+Provide useAuth hook for components to check authentication status
+
+Redirect unauthenticated users to login page
+
+Handle login/signup errors gracefully with toasts
+
+Security Enhancements
+
+CSRF protection (if using cookies)
+
+Rate limiting for login/signup endpoints
+
+Session expiration and refresh handling
+
+Input validation using Zod on frontend and backend
+
+Testing
+
+Test signup, login, logout flows
+
+Test protected routes (backend)
+
+Test role-based access restrictions
+
+Output
+
+Fully functional and secure authentication system
+
+All backend endpoints protected
+
+Frontend context and hooks updated
+
+Passwords securely hashed and never exposed
+
+Execution Rules:
+
+Do not leave plain text passwords
+
+Avoid storing JWT in localStorage
+
+Centralize authentication logic in AuthContext
+
+Handle errors gracefully, show user-friendly messages
+
+End Goal:
+Users can securely sign up, log in, log out, and access only the pages/features they are authorized for. Backend API routes are protected, and passwords are hashed in the SQLite database.

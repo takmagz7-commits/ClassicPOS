@@ -1,0 +1,65 @@
+You are a Senior Full-Stack Software Engineer specializing in secure POS system development.
+
+Objective:
+Execute **Phase 2: Security & Data Integrity** from the ClassicPOS Fix Roadmap.
+Upgrade ClassicPOS authentication, database relationships, and error handling for a production-ready deployment.
+
+🟢 SYSTEM CONTEXT:
+- Project: ClassicPOS
+- Backend: Node.js (Express)
+- Frontend: React + TypeScript (Vite)
+- Database: SQLite (classicpos.db, offline + embedded for Android)
+- Auth System: JWT + bcrypt + PIN-based secondary access
+- Test Stack: Jest + Supertest (backend), React Testing Library (frontend)
+
+---
+
+### 🎯 PHASE 2 TASKS
+
+#### 1️⃣ Security Hardening (SEC-001 to SEC-003)
+🟥 **SEC-001: Encrypt MFA Backup Codes**
+- Current Issue: Backup codes stored in plain text.
+- Fix: Hash all backup codes using bcrypt before saving.
+- Update: Regenerate codes for existing users, hash on save.
+- Test: Verify backup codes unreadable in database.
+
+🟥 **SEC-002: Implement Session Revocation / Token Invalidation**
+- Add token blacklist table or in-memory cache (e.g., revoked_tokens).
+- Add logout endpoint to revoke JWT token.
+- Middleware: Block blacklisted tokens from further access.
+- Test:
+  ✅ Valid token → access granted
+  ❌ Revoked token → access denied (401)
+
+🟥 **SEC-003: Enforce Password Complexity Policy**
+- Rule: Minimum 8 characters, at least 1 uppercase, 1 lowercase, 1 number, and 1 special symbol.
+- Add regex validation in `createUserSchema` (backend/utils/validation.cjs).
+- Test: Weak password → rejected with 400.
+
+---
+
+#### 2️⃣ Data Integrity (DB-002, DB-003)
+🟧 **DB-002: Implement Cascading Deletes or Dependency Checks**
+- Add dependency checks before deleting any parent record:
+  • Deleting a supplier checks linked purchase orders.
+  • Deleting a customer checks linked sales.
+- Option: Add `ON DELETE CASCADE` where logical.
+- Test: Verify dependent records are either blocked or deleted safely.
+
+🟧 **DB-003: Stock Reversal on Inventory Document Deletion**
+- On deleting GRN, Stock Adjustment, or Transfer:
+  → Reverse associated stock movements.
+  → Adjust stock counts in products table.
+- Prevent deletion of "approved" documents if reversal logic fails.
+- Test:
+  ✅ Delete pending GRN → OK, stock reversed.
+  ❌ Delete approved GRN → 400, blocked.
+
+---
+
+#### 3️⃣ Error Handling & Sanitization (ERR-002)
+- Sanitize all backend error messages.
+- Replace raw SQLite errors (e.g., “NOT NULL constraint failed”) with safe responses:
+  Example:
+  ```js
+  res.status(400).json({ error: "Invalid or incomplete data provided." });

@@ -1,0 +1,45 @@
+You are an AI software engineer finalizing ClassicPOS to 100% production readiness.
+Review and fix all critical, major, and minor issues listed in CLASSICPOS_COMPREHENSIVE_AUDIT_OCT18_2025.md and JSON.
+
+✅ Objectives:
+1. Fix all 4 critical issues immediately:
+   - Generate .env from .env.example with secure randomized secrets.
+   - Replace JWT placeholder secret with a 64-character secure key.
+   - Add database auto-backup routine for SQLite (local backups + rotation).
+   - Remove unused imports and resolve TypeScript warnings in TransferOfGoods.tsx.
+
+2. Address all 10 major issues:
+   - Add backend validation preventing edits to completed orders.
+   - Remove all console.log statements across the codebase.
+   - Configure email sending using nodemailer with environment-based SMTP config.
+   - Add Swagger or Redoc auto-generated API documentation.
+   - Create Jest test coverage for critical routes (auth, sales, inventory, accounting).
+   - Implement graceful error handling (try/catch + logging middleware).
+   - Add environment check (dev/test/prod) to adjust logging levels.
+   - Ensure database connection errors are caught and logged.
+   - Optimize slow-loading modules (Reports & Accounting).
+   - Add missing dependency cleanup in package.json.
+
+3. Resolve 6 minor issues:
+   - Add missing field validations (customer phone, tax ID, etc.).
+   - Improve UI alignment and loading state handling.
+   - Update README with setup + environment details.
+   - Add a changelog in docs/.
+   - Remove deprecated functions.
+   - Standardize toast notifications and alerts.
+
+4. Fix the cosmetic issue:
+   - Adjust minor UI spacing/padding in dashboard header.
+
+🧠 Additional Enhancements:
+- Implement automatic nightly SQLite backup to `/backups/` folder.
+- Add test script for JWT and MFA workflow.
+- Generate final release build with production optimization.
+- Run full validation and integration test to confirm stability.
+
+🎯 Output:
+- Generate `CLASSICPOS_FINAL_FIXPACK_REPORT_OCT2025.md` with:
+  - All fixes applied (line references + commit notes)
+  - Confirmation of no TypeScript or runtime errors
+  - Test results summary (pass/fail)
+  - Security validation report

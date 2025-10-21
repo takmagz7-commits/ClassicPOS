@@ -1,0 +1,224 @@
+Prompt: Implement Full SQLite Integration in ClassicPOS
+
+You are an AI software engineer upgrading the ClassicPOS system from localStorage data persistence to SQLite-based offline database storage.
+Scan the entire codebase (frontend + context + services) and perform a full SQLite integration while preserving all existing functionality (products, inventory, sales, customers, settings, etc.).
+
+⚙️ Objectives
+1. Database Engine Setup
+
+Implement SQLite database connectivity using one of:
+
+better-sqlite3 (for Electron/desktop)
+
+expo-sqlite (for React Native)
+
+sqlite3 (for Node.js backend or local service)
+
+Create a centralized helper file:
+src/db/sqlite.ts (or src/services/database.ts)
+
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+
+export const initDatabase = async () => {
+  const db = await open({
+    filename: './classicpos.db',
+    driver: sqlite3.Database
+  });
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS products (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT,
+      sku TEXT UNIQUE,
+      price REAL,
+      stock INTEGER,
+      category TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+  return db;
+};
+
+2. Replace localStorage with SQLite
+
+For each Context or Service currently using localStorage:
+
+Replace all localStorage.getItem(), setItem(), and removeItem() calls with SQLite read/write operations.
+
+Contexts to update:
+
+ProductsContext
+
+CustomersContext
+
+SalesContext
+
+SuppliersContext
+
+LoyaltySettingsContext
+
+StoreContext
+
+Example conversion:
+
+// Before
+const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
+// After
+const db = await initDatabase();
+const products = await db.all('SELECT * FROM products');
+
+3. Data Models & Tables
+
+Create tables for all major modules:
+
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT DEFAULT 'Cashier',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  sku TEXT UNIQUE,
+  price REAL,
+  stock INTEGER,
+  category TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS sales (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  customer_id INTEGER,
+  total REAL,
+  payment_method TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS customers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  phone TEXT,
+  email TEXT,
+  loyalty_points INTEGER DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS suppliers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  contact TEXT,
+  email TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS inventory_logs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  product_id INTEGER,
+  change_type TEXT,
+  quantity INTEGER,
+  reason TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+4. Database Access Layer
+
+Create a generic helper in src/services/dbService.ts:
+
+export const insert = async (table: string, data: Record<string, any>) => {
+  const db = await initDatabase();
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+  await db.run(
+    `INSERT INTO ${table} (${keys.join(',')}) VALUES (${keys.map(() => '?').join(',')})`,
+    values
+  );
+};
+
+export const getAll = async (table: string) => {
+  const db = await initDatabase();
+  return db.all(`SELECT * FROM ${table}`);
+};
+
+export const update = async (table: string, id: number, data: Record<string, any>) => {
+  const db = await initDatabase();
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+  await db.run(
+    `UPDATE ${table} SET ${keys.map(k => `${k}=?`).join(',')} WHERE id=?`,
+    [...values, id]
+  );
+};
+
+export const remove = async (table: string, id: number) => {
+  const db = await initDatabase();
+  await db.run(`DELETE FROM ${table} WHERE id=?`, id);
+};
+
+5. Initialize on App Load
+
+Modify src/main.tsx or your app root file:
+
+import { initDatabase } from './db/sqlite';
+
+initDatabase().then(() => {
+  console.log('✅ SQLite Database Initialized');
+});
+
+6. Offline Sync (Optional Enhancement)
+
+Add sync-ready metadata columns: synced, last_modified.
+
+Implement a stub for later online sync:
+
+CREATE TABLE IF NOT EXISTS sync_queue (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  table_name TEXT,
+  record_id INTEGER,
+  action TEXT,
+  synced INTEGER DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+7. .env Configuration
+
+Create .env.example:
+
+SQLITE_DB_PATH=./classicpos.db
+SQLITE_LOG_LEVEL=info
+
+8. Validation & Testing
+
+Verify all CRUD functions (Products, Customers, Sales) work with SQLite.
+
+Simulate app restart → ensure data persists.
+
+Run query count and test performance on 5,000+ records.
+
+Check all context providers (Inventory, Sales, CRM) correctly fetch data from DB.
+
+🧩 Deliverables
+
+✅ src/db/sqlite.ts — database initializer
+
+✅ src/services/dbService.ts — database CRUD helpers
+
+✅ Updated context and service files (Products, Sales, Customers, etc.)
+
+✅ .env.example file
+
+✅ Verified persistence and data integrity
+
+🎯 Goal
+
+Achieve full SQLite integration for ClassicPOS:
+
+Offline-first database
+
+Secure, persistent data storage
+
+Complete replacement of localStorage
+
+Ready for future cloud sync or API bridge

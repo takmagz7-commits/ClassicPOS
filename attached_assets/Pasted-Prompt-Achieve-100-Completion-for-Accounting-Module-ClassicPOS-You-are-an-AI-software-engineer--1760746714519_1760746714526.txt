@@ -1,0 +1,198 @@
+Prompt: Achieve 100% Completion for Accounting Module — ClassicPOS
+
+You are an AI software engineer finalizing the Accounting module of the ClassicPOS system.
+Your mission is to analyze, complete, and integrate all accounting functionalities across frontend, backend, and database — ensuring all ledgers, journals, transactions, and reports are accurate, reconciled, and production-ready.
+
+🎯 Objective
+
+Complete and integrate the Accounting module to full (100%) functionality — covering:
+
+Double-entry accounting system
+
+Journal entries and automatic postings from POS transactions
+
+Trial Balance, Balance Sheet, and Profit & Loss
+
+Receivables, Payables, Expense Management
+
+Bank and Cash Accounts
+
+Integration with Inventory, Sales, and CRM modules
+
+Export (PDF/CSV) and reporting features
+
+🧩 Scope of Work
+
+Perform a full audit + completion for the following core files:
+
+Area	Path
+Frontend UI	src/modules/accounting/
+Accounting Context	src/context/AccountingContext.tsx
+Backend Routes	server/routes/accounting.ts
+Controllers	server/controllers/accountingController.ts
+Services	server/services/accountingService.ts
+Database Schema	server/database/schema/accounting.sql
+Integration Points	sales, purchases, suppliers, customers, inventory, reports
+✅ Functional Requirements
+1️⃣ Core Accounting Features
+Feature	Description	Integration Source
+Chart of Accounts	Full listing of accounts (Assets, Liabilities, Equity, Income, Expenses). Allow CRUD.	Base structure
+Journal Entries	Manual or automatic entries. Debit/Credit must balance.	POS, Purchases, Payments
+General Ledger	Ledger view of all accounts with running balances.	Journal
+Trial Balance	Summarized list of all debit/credit balances for validation.	Ledger
+Income Statement (P&L)	Revenue and Expense accounts summary per period.	Sales, Expenses
+Balance Sheet	Assets, Liabilities, and Equity snapshot.	Trial Balance
+Cash Flow Statement	Cash movement from operations, financing, investing.	Sales, Payments
+Bank & Cash Management	Record deposits, withdrawals, transfers, reconciliations.	Payments module
+Accounts Receivable	Track unpaid invoices and aging.	Customers, Sales
+Accounts Payable	Track unpaid supplier invoices.	Purchases, Suppliers
+Expense Management	Record business expenses and allocate accounts.	Expense module
+Tax & VAT Reporting	Compute tax liabilities from transactions.	Sales, Purchases
+2️⃣ Automatic Posting Rules
+
+All POS and system transactions must automatically post double-entry journal entries:
+
+Transaction	Debit	Credit
+Sale (Cash)	Cash/Bank	Sales Revenue
+Sale (Credit)	Accounts Receivable	Sales Revenue
+Purchase	Inventory	Accounts Payable
+Payment from Customer	Cash/Bank	Accounts Receivable
+Payment to Supplier	Accounts Payable	Cash/Bank
+Expense	Expense Account	Cash/Bank
+Stock Adjustment (Loss)	Inventory Loss Expense	Inventory Asset
+Stock Received (GRN)	Inventory	Supplier/Payables
+
+⚙️ Implement this logic in accountingService.ts as reusable posting functions.
+
+3️⃣ Backend Implementation (Express + SQLite)
+
+Routes in server/routes/accounting.ts:
+
+GET /api/accounting/accounts
+POST /api/accounting/accounts
+POST /api/accounting/journal
+GET /api/accounting/ledger
+GET /api/accounting/trial-balance
+GET /api/accounting/income-statement
+GET /api/accounting/balance-sheet
+GET /api/accounting/cashflow
+
+
+Each route should:
+
+Use parameterized SQL queries
+
+Validate debit = credit for journals
+
+Return clean, structured JSON responses
+
+Support startDate, endDate, and accountId filters
+
+Example (Trial Balance SQL):
+
+SELECT account_name,
+       SUM(debit) AS total_debit,
+       SUM(credit) AS total_credit,
+       (SUM(debit) - SUM(credit)) AS balance
+FROM journal_entries
+WHERE date BETWEEN ? AND ?
+GROUP BY account_id;
+
+4️⃣ Frontend UI Components
+
+Implement or complete all pages under src/modules/accounting/:
+
+Page	Purpose
+ChartOfAccounts.tsx	CRUD for accounts with types and categories
+JournalEntries.tsx	List/add journal entries, auto-balancing
+Ledger.tsx	Account ledger with running balance
+TrialBalance.tsx	Auto-generated summary view
+IncomeStatement.tsx	P&L by date range
+BalanceSheet.tsx	Snapshot view of assets/liabilities/equity
+CashFlow.tsx	Cash movement by category
+ARReport.tsx / APReport.tsx	Receivables/Payables aging report
+
+Shared features:
+
+Filters (date, account type, branch)
+
+Export to CSV / PDF
+
+Print and email options
+
+Real-time totals at the bottom
+
+Validation of journal balance before posting
+
+5️⃣ Integration Points
+Module	Integration
+POS	Auto-post sales, taxes, discounts
+Purchases	Post payables and inventory updates
+Customers	Link invoices, payments
+Suppliers	Link purchases and GRNs
+Inventory	Adjust asset accounts on stock changes
+Reports	Feed financial statements
+CRM	Sync customer balances
+6️⃣ Export & Reporting
+
+Add CSV + PDF export to all reports using utilities:
+
+utils/exportToCSV.ts
+utils/exportToPDF.ts
+
+
+Include:
+
+Company name/logo
+
+Date generated
+
+Report title and period
+
+Totals summary
+
+7️⃣ Validation, Security, and Performance
+
+Validate all entries (no unbalanced journals)
+
+Use foreign keys for relational consistency
+
+Optimize ledger/trial balance queries
+
+Restrict editing/deleting posted transactions unless admin
+
+Cache frequent report queries (optional)
+
+🧮 Expected Completion Report
+Component	Status	Implementation	Notes
+Chart of Accounts	✅	CRUD completed	Uses account types & codes
+Journal Entries	✅	Auto-post + manual	Balances validated
+Ledger	✅	Live view by account	Running balance working
+Trial Balance	✅	Aggregated view	Matches Ledger totals
+Financial Statements	✅	P&L + Balance Sheet + Cashflow	Tested and reconciled
+AR/AP	✅	Linked to Customers/Suppliers	Integrated
+Reports	✅	Exportable (PDF/CSV)	Verified layout
+Backend APIs	✅	All endpoints active	Parameterized queries
+Integration	✅	POS, CRM, Inventory	Auto-post works
+Security	✅	Role-based access	Accounting admin only
+⚙️ Execution Rules
+
+Maintain async/await structure for API calls.
+
+Use consistent naming: account_id, debit, credit.
+
+Follow double-entry principles strictly.
+
+No console logs, TODOs, or commented placeholders.
+
+Test all reports for accuracy and balance validation.
+
+🧠 Goal
+
+Deliver a fully functional, tested, and reconciled Accounting system that seamlessly integrates with the ClassicPOS ecosystem — ensuring financial accuracy, audit compliance, and professional reporting.
+
+🧭 Final Instruction
+
+Scan and complete the entire Accounting module (frontend + backend + database).
+Fix unfinished functions, missing integrations, or broken links.
+Implement all reports and validations to achieve 100% completion and return a structured summary table confirming that every feature, ledger, and financial report is functional.

@@ -1,0 +1,12 @@
+diff --git a/node_modules/capacitor-nodejs/android/CMakeLists.txt b/node_modules/capacitor-nodejs/android/CMakeLists.txt
+index 2cf782a..9a616bc 100644
+--- a/node_modules/capacitor-nodejs/android/CMakeLists.txt
++++ b/node_modules/capacitor-nodejs/android/CMakeLists.txt
+@@ -30,4 +30,5 @@ find_library( log-lib
+ 
+ target_link_libraries( native-lib
+                        libnode
+-                       ${log-lib} )
+\ No newline at end of file
++                       ${log-lib}
++                       c++_shared )

@@ -1,0 +1,163 @@
+Prompt: Achieve 100% Completion for Customer Module — ClassicPOS
+
+You are an AI software engineer completing the Customer module of the ClassicPOS system.
+Your task is to scan and complete all frontend, backend, and database logic related to customers — ensuring full functionality, consistency, and production readiness.
+
+🎯 Objective
+
+Bring the Customer module to 100% completion, ensuring that all customer-related features — creation, editing, viewing, searching, filtering, and integration with other modules — work flawlessly.
+
+🧩 Scope of Work
+
+You must review and complete every file related to the customer workflow across:
+
+src/modules/customers/ (frontend components, forms, tables, pages, context)
+
+src/context/CustomerContext.tsx
+
+server/routes/customers.ts
+
+server/controllers/customersController.ts
+
+server/services/customerService.ts
+
+server/models/Customer.ts
+
+Any other related utilities, validations, or integrations
+
+✅ Required Functionalities
+1️⃣ CRUD Operations (Backend)
+
+Implement full REST API:
+
+GET /api/customers → Fetch all customers (with pagination & filtering)
+
+GET /api/customers/:id → Get single customer
+
+POST /api/customers → Create customer (validate input)
+
+PUT /api/customers/:id → Update customer details
+
+DELETE /api/customers/:id → Soft-delete customer (status = inactive)
+
+Ensure SQL queries or ORM calls are parameterized (no SQL injection)
+
+Add proper error handling with standard responses (400, 404, 500)
+
+2️⃣ Database Schema (SQLite)
+
+Table: customers
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+email TEXT,
+phone TEXT,
+address TEXT,
+loyaltyPoints INTEGER DEFAULT 0,
+status TEXT DEFAULT 'active',
+createdAt TEXT,
+updatedAt TEXT
+
+
+Create migration or initialization logic if table is missing.
+
+3️⃣ Frontend Integration
+
+CustomerContext.tsx
+
+Implement getAll, getOne, create, update, delete with async pattern.
+
+Handle API calls using apiService.
+
+Use functional state updates to avoid stale closures.
+
+Centralized toast notifications for success/error.
+
+CustomerForm.tsx
+
+Input validation (required fields: name, email/phone optional)
+
+Handle both add/edit modes
+
+Disable submit during API call
+
+CustomerList.tsx
+
+Display all customers with pagination, search, and filter
+
+Show inactive customers distinctly
+
+Include actions: Edit, Delete (soft), View
+
+CustomerDetails.tsx
+
+Display all info, including order history if integrated
+
+Link to related sales, loyalty history, or CRM data
+
+4️⃣ Integration Points
+
+Link with Sales → Customer selection in checkout/cart
+
+Link with CRM → Use customers as leads/contacts
+
+Link with Loyalty Module → Update loyalty points after sales
+
+Link with Accounting Module → Display outstanding invoices or credit
+
+5️⃣ Validation & Error Handling
+
+Add Zod/Yup validation schemas for inputs (frontend + backend)
+
+Gracefully handle network or API errors
+
+Log errors on backend for debugging
+
+6️⃣ UI/UX Enhancements
+
+Responsive customer table & forms
+
+Toasts for success/failure
+
+Confirmation modals before deletion
+
+Loading & empty states
+
+🧮 Expected Output Format (Report + Implementation)
+
+Return a completion report and then perform implementation.
+
+Completion Report Example:
+Area	Status	Missing / Fixed	Notes
+Backend API	✅ Complete	Implemented all CRUD routes	Verified via Postman
+Database	✅ Complete	Customer table migrated	Auto-created if missing
+Context	✅ Complete	Added async pattern	No closure bugs
+UI	✅ Complete	Added responsive table & modals	Works across screen sizes
+Integration	⚙️ Linked	Sales + CRM integrated	Loyalty pending next phase
+⚙️ Execution Rules
+
+Maintain async resource pattern consistency.
+
+Do not introduce new dependencies unless necessary.
+
+Use centralized apiService for all HTTP requests.
+
+Follow existing design and naming conventions.
+
+Ensure no console.log, TODO, or commented placeholder code remains.
+
+🧠 Goal
+
+Produce a fully functional, tested, and integrated Customer module — production-ready, synced with backend, and visually consistent with the rest of ClassicPOS.
+
+When complete, return:
+
+A completion report (table)
+
+Confirmation of 100% functional verification
+
+Notes on any related modules affected (Sales, CRM, Accounting)
+
+Final Instruction:
+
+Run a full scan of the Customer module, identify missing logic, and implement all required backend + frontend code to achieve 100% functionality. Return a structured report and confirmation that all features are working.

@@ -1,0 +1,136 @@
+Prompt: Fix “You Don’t Have Permission After Sign-In” Error in ClassicPOS
+
+You are an AI Software Engineer debugging and fixing the ClassicPOS authentication and authorization flow.
+The current issue: After successful sign-in, the user receives a “You don’t have permission” message or blank page, even though login succeeds.
+
+⚙️ Goal
+
+Fix and verify that authenticated users (especially the admin) can:
+
+Log in successfully
+
+Access authorized pages
+
+Retain session state (JWT + Role)
+
+Redirect to the dashboard or home screen without permission errors
+
+🧠 Root Cause Checklist
+
+Scan and fix any of the following issues that might cause the error:
+
+JWT Payload Missing Role or UserID
+
+Ensure backend includes id, email, and role in the JWT payload:
+
+const token = jwt.sign(
+  { id: user.id, email: user.email, role: user.role },
+  process.env.JWT_SECRET,
+  { expiresIn: '7d' }
+);
+
+
+Frontend AuthContext / Redux Not Loading User Role
+
+Fix login response handler in AuthContext.js or authSlice.js to correctly store:
+
+{ token, user: { id, email, role } }
+
+
+Make sure the role is passed to protected routes and permissions checkers.
+
+Backend Middleware (authMiddleware)
+
+Verify middleware correctly extracts and verifies the JWT:
+
+const decoded = jwt.verify(token, process.env.JWT_SECRET);
+req.user = decoded;
+next();
+
+
+If req.user is missing role or ID, attach it properly before continuing.
+
+Role-based Route Guards
+
+Check all roleCheck() or authorizeRoles() middlewares to ensure:
+
+Admin has full access by default.
+
+Middleware properly checks req.user.role before rejecting.
+Example:
+
+export const roleCheck = (allowedRoles) => (req, res, next) => {
+  if (!allowedRoles.includes(req.user.role)) {
+    return res.status(403).json({ message: "You don’t have permission" });
+  }
+  next();
+};
+
+
+Frontend ProtectedRoute / Permission Gate
+
+Ensure ProtectedRoute logic doesn’t block logged-in users due to delayed context load:
+
+if (loading) return <Spinner />;
+if (!user) return <Navigate to="/login" />;
+return children;
+
+
+Fix condition to allow access once user.role is available.
+
+Expired or Invalid Token
+
+Add token refresh or re-login logic if JWT expires too early.
+
+Validate localStorage.getItem("token") before clearing user session.
+
+🔧 Implementation Tasks
+
+Update backend auth.cjs:
+
+Include full user details (ID, email, role) in JWT.
+
+Ensure login response includes both token and user object.
+
+Update frontend authentication logic:
+
+Parse backend response and save token, user.role, user.id to localStorage or global state.
+
+Reload dashboard only after role is verified.
+
+Update route guards:
+
+Allow admin access to /dashboard, /settings, /users.
+
+Display error page only if user’s role truly lacks access.
+
+Re-test login:
+
+Confirm admin can log in and reach /dashboard.
+
+Test non-admin roles with restricted routes (should show permission error only then).
+
+✅ Verification Checklist
+
+After applying the fix:
+
+ Admin login redirects to /dashboard
+
+ req.user.role is present in backend logs
+
+ “You don’t have permission” no longer appears for valid users
+
+ Invalid or expired tokens correctly redirect to /login
+
+ Role-based pages (e.g., /users) correctly restricted
+
+🧩 Optional Enhancement
+
+Add a debug route /api/debug/session:
+
+router.get('/debug/session', authMiddleware, (req, res) => {
+  res.json({ user: req.user });
+});
+
+
+Use it to confirm the authenticated session payload during testing.

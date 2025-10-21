@@ -1,0 +1,203 @@
+Prompt: Achieve 100% Completion for User Management — ClassicPOS
+
+You are an AI software engineer finalizing the User Management module of the ClassicPOS project.
+Your task is to analyze, complete, and integrate all functionalities related to user creation, roles, access control, attendance, and payroll — ensuring security, reliability, and full synchronization with other system modules.
+
+🎯 Objective
+
+Achieve 100% functionality and integration for ClassicPOS User Management by completing:
+
+Employee management (CRUD, profiles, departments, job titles)
+
+Role-based access control (RBAC)
+
+Permissions and activity tracking
+
+Attendance and time clock
+
+Payroll and user-based performance integration
+
+Authentication + session link consistency
+
+🧩 Scope of Scan and Completion
+Area	Path
+Frontend	src/modules/users/, src/context/UserContext.tsx
+Backend	server/routes/users.ts, server/controllers/userController.ts, server/services/userService.ts
+Database	server/database/schema/users.sql, roles.sql, attendance.sql, payroll.sql
+Auth Integration	src/context/AuthContext.tsx, server/middleware/auth.ts
+Utilities	src/utils/permissions.ts, src/hooks/useAuth.ts
+✅ Functional Requirements
+1️⃣ User Management Core (CRUD)
+Feature	Description
+User Creation	Add new employee/user with role, department, and access level.
+User Editing	Update profile, permissions, salary, or employment details.
+User Deactivation	Soft delete or deactivate user without removing records.
+Profile Management	User can view and edit own profile securely.
+Password Management	Reset/change password via admin or self-service.
+User Search & Filters	Search by name, department, or status.
+
+Database Fields (users table):
+
+id, username, full_name, email, phone, role_id, department, job_title,
+password_hash, status, created_at, updated_at, salary, pin_code
+
+2️⃣ Role-Based Access Control (RBAC)
+Component	Function
+Roles Table	Store predefined roles (Admin, Cashier, Manager, Accountant, Staff).
+Permissions Table	Define actions (view, edit, delete, create) for each module.
+Role-Permission Mapping	Many-to-many relationship linking roles and permissions.
+Middleware Check	Restrict route access using checkPermission(module, action) middleware.
+
+Example Middleware (Express):
+
+function checkPermission(module, action) {
+  return (req, res, next) => {
+    const userRole = req.user.role;
+    if (!hasPermission(userRole, module, action)) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    next();
+  };
+}
+
+
+Frontend Integration:
+
+Conditionally render UI elements based on permissions.
+
+Example:
+
+{canEdit('inventory') && <Button>Edit Item</Button>}
+
+3️⃣ Attendance & Time Clock Integration
+Feature	Description
+Clock In / Clock Out	Log employee work sessions with timestamps.
+Break & Shift Tracking	Support flexible shifts and break times.
+Automatic Calculation	Calculate total hours worked per day/week/month.
+Sync with Payroll	Integrate attendance with salary and overtime calculations.
+
+Database: attendance table
+
+id, user_id, clock_in, clock_out, total_hours, date, remarks
+
+
+Frontend Components:
+
+AttendanceList.tsx — view all records with filters
+
+TimeClock.tsx — interactive clock-in/out widget
+
+ShiftSummary.tsx — dashboard summary by employee
+
+4️⃣ Payroll & HR Integration
+Feature	Description
+Salary Structure	Define base salary, allowances, deductions, overtime rates.
+Payroll Processing	Auto-calculate salaries based on attendance and role.
+Payslips	Generate downloadable payslip (PDF/CSV).
+Expense Integration	Post salary expenses to Accounting module automatically.
+Bonuses & Deductions	Manual adjustments per employee.
+
+Database: payroll table
+
+id, user_id, base_salary, total_allowances, total_deductions, net_salary, period_start, period_end, status
+
+
+Auto-post to Accounting:
+
+Debit: Salary Expense
+
+Credit: Cash/Bank
+
+5️⃣ Authentication & Session Integration
+Area	Requirement
+Session Sync	Ensure logged-in user data matches current context.
+PIN Login	Optional POS-mode pin login for cashiers.
+Role Awareness	AuthContext should include role, permissions, and department.
+Security Enforcement	JWT or session token validation per request.
+
+Frontend:
+Use useAuth() hook for:
+
+user.role
+
+user.permissions
+
+logout()
+
+refreshSession()
+
+6️⃣ Activity Logs and Auditing
+Log Type	Description
+Login/Logout	Record timestamps for system access.
+Changes	Track created/updated/deleted records with user ID.
+Payroll & Attendance Logs	Linked to HR events for audit trail.
+
+Store in activity_logs table:
+
+id, user_id, action, module, timestamp, details
+
+7️⃣ Frontend Pages to Complete
+Page	Description
+UserList.tsx	List all users with search/filter and quick actions.
+UserForm.tsx	Add/Edit user details and permissions.
+RoleManagement.tsx	Manage roles and permission sets.
+Attendance.tsx	Track clock-ins and generate summaries.
+Payroll.tsx	Calculate salaries and generate payslips.
+UserProfile.tsx	Personal account settings and password changes.
+AuditLogs.tsx	Display system activities for admins.
+
+All should include:
+
+Pagination and search
+
+Responsive design
+
+Export (CSV/PDF) and print options
+
+8️⃣ API Endpoints
+Endpoint	Method	Description
+/api/users	GET/POST/PUT/DELETE	CRUD for users
+/api/roles	GET/POST/PUT/DELETE	Manage roles
+/api/permissions	GET	Retrieve permissions
+/api/attendance	GET/POST/PUT	Attendance tracking
+/api/payroll	GET/POST	Payroll management
+/api/logs	GET	View system activity logs
+
+All endpoints should:
+
+Use parameterized queries (SQLite safe)
+
+Validate authentication middleware
+
+Return clean JSON responses
+
+🧮 Expected Completion Report
+Component	Status	Implementation	Notes
+User CRUD	✅	Full CRUD with validation	Tested
+Role & Permissions	✅	RBAC fully active	UI + API integrated
+Attendance	✅	Clock in/out + shift hours	Linked to payroll
+Payroll	✅	Salary + overtime + payslip	Auto-posts to Accounting
+Auth Integration	✅	JWT + PIN Login	Synced
+Logs & Audit	✅	System-level logging	Verified
+Security	✅	Role middleware enforced	All routes protected
+⚙️ Execution Rules
+
+Do not leave TODOs or console.logs.
+
+Maintain async/await consistency.
+
+Use clean modular imports (no circular references).
+
+Validate data before DB insert/update.
+
+Use toast or snackbar for frontend success/error notifications.
+
+🧠 Goal
+
+Deliver a complete, secure, and fully integrated User Management system in ClassicPOS that supports all HR and operational functions — including users, roles, attendance, payroll, and audits — ensuring cross-module consistency and enterprise-grade reliability.
+
+🧭 Final Instruction
+
+Scan and complete the entire User Management module (frontend + backend + database).
+Identify missing logic, incomplete integrations, or broken links.
+Implement all pending code and return a structured completion report confirming 100% functionality and integration with Authentication, Accounting, and Inventory systems.

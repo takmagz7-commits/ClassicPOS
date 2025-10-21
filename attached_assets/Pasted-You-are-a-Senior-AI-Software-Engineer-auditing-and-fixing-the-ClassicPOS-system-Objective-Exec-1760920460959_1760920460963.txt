@@ -1,0 +1,86 @@
+You are a Senior AI Software Engineer auditing and fixing the ClassicPOS system.
+
+Objective:
+Execute and complete **Phase 1: Production Blockers** from the ClassicPOS Fix Roadmap.
+Ensure authentication, database, and validation systems are stable, secure, and test-passing across all environments (Web + Android).
+
+🟢 SYSTEM DETAILS:
+- Backend: Node.js + Express + SQLite (offline-first)
+- Frontend: React + TypeScript (Vite)
+- Database: SQLite (classicpos.db, local)
+- Auth: JWT + bcrypt (PIN + Email/Password)
+
+---
+
+### 🎯 PHASE 1 TASKS
+
+1️⃣ **Fix Authentication Gaps (AUTH-001, AUTH-002)**
+- Add authentication middleware (`authMiddleware`) to all sensitive routes:
+  • `/api/products`
+  • `/api/products/:id`
+  • `/api/customers`
+  • `/api/sales`
+- Verify all protected routes return 401 without valid JWT.
+- Add rate limiting to `/api/auth/pin-login` (max 5 attempts/minute) to prevent brute force.
+- Ensure proper 429 error message after limit is exceeded.
+
+2️⃣ **Database Initialization & Indexing (DB-001)**
+- Confirm SQLite initializes correctly in all environments (web + Android embedded).
+- Verify schema creation on startup with the following tables:
+  • users (id, email, password_hash, pin, role)
+  • sessions (token, user_id, expires_at)
+  • products, customers, sales, roles
+- Add foreign key indexes for all relationship columns (user_id, product_id, customer_id, sale_id).
+- Test that database creation doesn’t throw migration errors.
+
+3️⃣ **Validation & Error Handling (ERR-001)**
+- Fix all routes returning 500 on user input errors.
+- Ensure validation (Zod or Joi) runs BEFORE database calls.
+- Return 400/422 for invalid or missing fields (e.g. empty product name, weak password).
+- Sanitize all responses to prevent internal SQLite error messages from leaking.
+
+4️⃣ **Basic Test Coverage (TEST-001 Partial)**
+Add initial automated tests for:
+  - Signup
+  - Login (Email + PIN)
+  - Logout
+  - Access control for `/api/products`
+Expected Results:
+  ✅ Successful signup returns 201
+  ✅ Authenticated product fetch returns 200
+  ❌ Unauthenticated request returns 401
+  ✅ Rate limit triggers after 5 failed PIN logins
+Use Jest + Supertest (backend) and React Testing Library (frontend).
+
+5️⃣ **Deliverables**
+- Fix and verify all Phase 1 issues.
+- Generate and return a report including:
+  • Authentication status summary
+  • SQLite database initialization logs
+  • Validation and response test results
+  • Route protection verification
+  • Files updated and changes applied
+
+6️⃣ **Exit Criteria (PASS when all met)**
+✅ All API endpoints return correct status codes (200, 400, 401, 429)
+✅ SQLite DB auto-creates without manual setup
+✅ Authentication cannot be bypassed
+✅ Signup, login, logout flows pass end-to-end
+✅ Replit Test Report: "Phase 1 — PASSED (Production Blockers Fixed)"
+
+---
+
+📦 Post-Fix Command Checklist:
+- Run backend: `npm run server`
+- Run frontend: `npm run dev`
+- Run tests: `npm test`
+
+Once all tasks are done, print a summary table:
+| Module | Tests Passed | Fixed Issues | Status |
+|---------|---------------|--------------|---------|
+| Auth    | ✅             | AUTH-001/002 | OK |
+| DB      | ✅             | DB-001 | OK |
+| Errors  | ✅             | ERR-001 | OK |
+| Tests   | ✅             | TEST-001 partial | OK |
+
+Return the final result as **“CLASSICPOS PHASE 1 COMPLETE ✅ — SYSTEM READY FOR STAGING.”**
